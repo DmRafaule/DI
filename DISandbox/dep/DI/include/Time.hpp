@@ -2,11 +2,12 @@
 
 #include <chrono>
 
-
 class CoreTime{
 public: 
    CoreTime();
    ~CoreTime();
+   void OUT();
+   void IN();
 public:
    static double time_since_start_programm;
    static double tic;

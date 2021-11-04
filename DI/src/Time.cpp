@@ -14,3 +14,9 @@ CoreTime::~CoreTime(){
    tic = elapsed_seconds.count();
    time_since_start_programm += elapsed_seconds.count();
 }
+void CoreTime::OUT(){
+   std::cout << "Hiiiii\n";
+}
+void CoreTime::IN(){
+   std::cout << "Ihhhhhh\n";
+}

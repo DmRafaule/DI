@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-../dep/DI/include/Debuger.hpp
+../DISandbox/dep/DI/include/Debuger.hpp
 
-../dep/DI/include/Time.hpp
+../DISandbox/dep/DI/include/Time.hpp
 chrono
 -
 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libDI.a CMakeFiles/DI.dir/src/Debuger.cpp.o CMakeFiles/DI.dir/src/Time.cpp.o CMakeFiles/DI.dir/src/main.cpp.o
+/usr/bin/ranlib libDI.a
