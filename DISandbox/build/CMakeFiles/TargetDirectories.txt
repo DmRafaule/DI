@@ -1,0 +1,3 @@
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build/CMakeFiles/rebuild_cache.dir
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build/CMakeFiles/edit_cache.dir
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build/CMakeFiles/sandbox.dir

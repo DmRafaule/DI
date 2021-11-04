@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../dep/DI/include/Debuger.hpp
+
+../dep/DI/include/Time.hpp
+chrono
+-
+
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/main.cpp
+Debuger.hpp
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Debuger.hpp
+Time.hpp
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Time.hpp
+cstdio
+-
+
