@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/sandbox.dir/src/main.cpp.o"
+  "CMakeFiles/sandbox.dir/src/Sandbox.cpp.o"
   "sandbox"
   "sandbox.pdb"
 )

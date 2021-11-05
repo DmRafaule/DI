@@ -4,9 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Debuger.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.o"
-  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Time.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/Time.cpp.o"
-  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/main.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/main.cpp.o"
+  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,6 +14,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../DI/dep/GLEW/include"
   "../DI/dep/STB/include"
   "../DI/dep/GLM"
+  "../DI/src/core"
   )
 
 # Targets to which this target links.

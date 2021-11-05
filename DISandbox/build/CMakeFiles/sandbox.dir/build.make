@@ -76,27 +76,27 @@ include ../DISandbox/build/CMakeFiles/sandbox.dir/progress.make
 # Include the compile flags for this target's objects.
 include ../DISandbox/build/CMakeFiles/sandbox.dir/flags.make
 
-../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.o: ../DISandbox/build/CMakeFiles/sandbox.dir/flags.make
-../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.o: ../DISandbox/src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.o"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sandbox.dir/src/main.cpp.o -c /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/main.cpp
+../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.o: ../DISandbox/build/CMakeFiles/sandbox.dir/flags.make
+../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.o: ../DISandbox/src/Sandbox.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.o"
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sandbox.dir/src/Sandbox.cpp.o -c /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Sandbox.cpp
 
-../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sandbox.dir/src/main.cpp.i"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/main.cpp > CMakeFiles/sandbox.dir/src/main.cpp.i
+../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sandbox.dir/src/Sandbox.cpp.i"
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Sandbox.cpp > CMakeFiles/sandbox.dir/src/Sandbox.cpp.i
 
-../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sandbox.dir/src/main.cpp.s"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/main.cpp -o CMakeFiles/sandbox.dir/src/main.cpp.s
+../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sandbox.dir/src/Sandbox.cpp.s"
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Sandbox.cpp -o CMakeFiles/sandbox.dir/src/Sandbox.cpp.s
 
 # Object files for target sandbox
 sandbox_OBJECTS = \
-"CMakeFiles/sandbox.dir/src/main.cpp.o"
+"CMakeFiles/sandbox.dir/src/Sandbox.cpp.o"
 
 # External object files for target sandbox
 sandbox_EXTERNAL_OBJECTS =
 
-../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.o
+../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.o
 ../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/build.make
 ../DISandbox/build/sandbox: ../DISandbox/dep/DI/lib/libDI.a
 ../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/link.txt

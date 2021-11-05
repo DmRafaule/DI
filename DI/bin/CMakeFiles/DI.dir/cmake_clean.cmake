@@ -1,7 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DI.dir/src/Debuger.cpp.o"
-  "CMakeFiles/DI.dir/src/Time.cpp.o"
-  "CMakeFiles/DI.dir/src/main.cpp.o"
+  "CMakeFiles/DI.dir/src/core/App.cpp.o"
   "libDI.a"
   "libDI.pdb"
 )

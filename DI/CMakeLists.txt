@@ -2,12 +2,12 @@
 cmake_minimum_required(VERSION 3.18)
 project(DI)
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/core/*.cpp")
 
 file(GLOB SDL2 "dep/SDL2/lib/*.so.*")
 file(GLOB GLEW "dep/GLEW/lib/*.so*")
 set(GL -lGL -lglut )
-set(INCLUDE_DIRECTORIES dep/SDL2/include dep/GLEW/include dep/STB/include dep/GLM)
+set(INCLUDE_DIRECTORIES dep/SDL2/include dep/GLEW/include dep/STB/include dep/GLM src/core)
 set(CMAKE_CXX_FLAGS -pthread)
 
 

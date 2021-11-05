@@ -6,17 +6,23 @@
 
 #IncludeRegexTransform: 
 
-../DISandbox/dep/DI/include/Debuger.hpp
+../DISandbox/dep/DI/include/DI.hpp
+App.hpp
+../DISandbox/dep/DI/include/App.hpp
+Entry.hpp
+../DISandbox/dep/DI/include/Entry.hpp
 
-../DISandbox/dep/DI/include/Time.hpp
-chrono
--
+../DISandbox/dep/DI/include/core/App.hpp
+Core.hpp
+../DISandbox/dep/DI/include/core/Core.hpp
 
-/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/main.cpp
-Debuger.hpp
-/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Debuger.hpp
-Time.hpp
-/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Time.hpp
-cstdio
--
+../DISandbox/dep/DI/include/core/Core.hpp
+
+../DISandbox/dep/DI/include/core/Entry.hpp
+App.hpp
+../DISandbox/dep/DI/include/core/App.hpp
+
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/Sandbox.cpp
+DI.hpp
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/src/DI.hpp
 

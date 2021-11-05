@@ -144,32 +144,32 @@ sandbox/fast:
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/build
 .PHONY : sandbox/fast
 
-src/main.o: src/main.cpp.o
+src/Sandbox.o: src/Sandbox.cpp.o
 
-.PHONY : src/main.o
+.PHONY : src/Sandbox.o
 
 # target to build an object file
-src/main.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/Sandbox.cpp.o:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.o
+.PHONY : src/Sandbox.cpp.o
 
-src/main.i: src/main.cpp.i
+src/Sandbox.i: src/Sandbox.cpp.i
 
-.PHONY : src/main.i
+.PHONY : src/Sandbox.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/Sandbox.cpp.i:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.i
+.PHONY : src/Sandbox.cpp.i
 
-src/main.s: src/main.cpp.s
+src/Sandbox.s: src/Sandbox.cpp.s
 
-.PHONY : src/main.s
+.PHONY : src/Sandbox.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/Sandbox.cpp.s:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DISandbox/build/CMakeFiles/sandbox.dir/build.make ../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.s
+.PHONY : src/Sandbox.cpp.s
 
 # Help Target
 help:
@@ -180,9 +180,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sandbox"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/Sandbox.o"
+	@echo "... src/Sandbox.i"
+	@echo "... src/Sandbox.s"
 .PHONY : help
 
 

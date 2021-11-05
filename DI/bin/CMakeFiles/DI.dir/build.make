@@ -76,60 +76,30 @@ include ../DI/bin/CMakeFiles/DI.dir/progress.make
 # Include the compile flags for this target's objects.
 include ../DI/bin/CMakeFiles/DI.dir/flags.make
 
-../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.o: ../DI/bin/CMakeFiles/DI.dir/flags.make
-../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.o: ../DI/src/Debuger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.o"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DI.dir/src/Debuger.cpp.o -c /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Debuger.cpp
+../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o: ../DI/bin/CMakeFiles/DI.dir/flags.make
+../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o: ../DI/src/core/App.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o"
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DI.dir/src/core/App.cpp.o -c /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp
 
-../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DI.dir/src/Debuger.cpp.i"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Debuger.cpp > CMakeFiles/DI.dir/src/Debuger.cpp.i
+../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DI.dir/src/core/App.cpp.i"
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp > CMakeFiles/DI.dir/src/core/App.cpp.i
 
-../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DI.dir/src/Debuger.cpp.s"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Debuger.cpp -o CMakeFiles/DI.dir/src/Debuger.cpp.s
-
-../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.o: ../DI/bin/CMakeFiles/DI.dir/flags.make
-../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.o: ../DI/src/Time.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.o"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DI.dir/src/Time.cpp.o -c /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Time.cpp
-
-../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DI.dir/src/Time.cpp.i"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Time.cpp > CMakeFiles/DI.dir/src/Time.cpp.i
-
-../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DI.dir/src/Time.cpp.s"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/Time.cpp -o CMakeFiles/DI.dir/src/Time.cpp.s
-
-../DI/bin/CMakeFiles/DI.dir/src/main.cpp.o: ../DI/bin/CMakeFiles/DI.dir/flags.make
-../DI/bin/CMakeFiles/DI.dir/src/main.cpp.o: ../DI/src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ../DI/bin/CMakeFiles/DI.dir/src/main.cpp.o"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DI.dir/src/main.cpp.o -c /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/main.cpp
-
-../DI/bin/CMakeFiles/DI.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DI.dir/src/main.cpp.i"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/main.cpp > CMakeFiles/DI.dir/src/main.cpp.i
-
-../DI/bin/CMakeFiles/DI.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DI.dir/src/main.cpp.s"
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/main.cpp -o CMakeFiles/DI.dir/src/main.cpp.s
+../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DI.dir/src/core/App.cpp.s"
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp -o CMakeFiles/DI.dir/src/core/App.cpp.s
 
 # Object files for target DI
 DI_OBJECTS = \
-"CMakeFiles/DI.dir/src/Debuger.cpp.o" \
-"CMakeFiles/DI.dir/src/Time.cpp.o" \
-"CMakeFiles/DI.dir/src/main.cpp.o"
+"CMakeFiles/DI.dir/src/core/App.cpp.o"
 
 # External object files for target DI
 DI_EXTERNAL_OBJECTS =
 
-../DI/bin/libDI.a: ../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.o
-../DI/bin/libDI.a: ../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.o
-../DI/bin/libDI.a: ../DI/bin/CMakeFiles/DI.dir/src/main.cpp.o
+../DI/bin/libDI.a: ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o
 ../DI/bin/libDI.a: ../DI/bin/CMakeFiles/DI.dir/build.make
 ../DI/bin/libDI.a: ../DI/bin/CMakeFiles/DI.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libDI.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libDI.a"
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && $(CMAKE_COMMAND) -P CMakeFiles/DI.dir/cmake_clean_target.cmake
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DI.dir/link.txt --verbose=$(VERBOSE)
 

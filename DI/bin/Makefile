@@ -144,86 +144,32 @@ DI/fast:
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/build
 .PHONY : DI/fast
 
-src/Debuger.o: src/Debuger.cpp.o
+src/core/App.o: src/core/App.cpp.o
 
-.PHONY : src/Debuger.o
-
-# target to build an object file
-src/Debuger.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.o
-.PHONY : src/Debuger.cpp.o
-
-src/Debuger.i: src/Debuger.cpp.i
-
-.PHONY : src/Debuger.i
-
-# target to preprocess a source file
-src/Debuger.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.i
-.PHONY : src/Debuger.cpp.i
-
-src/Debuger.s: src/Debuger.cpp.s
-
-.PHONY : src/Debuger.s
-
-# target to generate assembly for a file
-src/Debuger.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/Debuger.cpp.s
-.PHONY : src/Debuger.cpp.s
-
-src/Time.o: src/Time.cpp.o
-
-.PHONY : src/Time.o
+.PHONY : src/core/App.o
 
 # target to build an object file
-src/Time.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.o
-.PHONY : src/Time.cpp.o
+src/core/App.cpp.o:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o
+.PHONY : src/core/App.cpp.o
 
-src/Time.i: src/Time.cpp.i
+src/core/App.i: src/core/App.cpp.i
 
-.PHONY : src/Time.i
-
-# target to preprocess a source file
-src/Time.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.i
-.PHONY : src/Time.cpp.i
-
-src/Time.s: src/Time.cpp.s
-
-.PHONY : src/Time.s
-
-# target to generate assembly for a file
-src/Time.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/Time.cpp.s
-.PHONY : src/Time.cpp.s
-
-src/main.o: src/main.cpp.o
-
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-
-.PHONY : src/main.i
+.PHONY : src/core/App.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/core/App.cpp.i:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.i
+.PHONY : src/core/App.cpp.i
 
-src/main.s: src/main.cpp.s
+src/core/App.s: src/core/App.cpp.s
 
-.PHONY : src/main.s
+.PHONY : src/core/App.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/core/App.cpp.s:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.s
+.PHONY : src/core/App.cpp.s
 
 # Help Target
 help:
@@ -234,15 +180,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DI"
-	@echo "... src/Debuger.o"
-	@echo "... src/Debuger.i"
-	@echo "... src/Debuger.s"
-	@echo "... src/Time.o"
-	@echo "... src/Time.i"
-	@echo "... src/Time.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/core/App.o"
+	@echo "... src/core/App.i"
+	@echo "... src/core/App.s"
 .PHONY : help
 
 
