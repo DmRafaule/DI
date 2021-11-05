@@ -171,6 +171,33 @@ src/core/App.cpp.s:
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.s
 .PHONY : src/core/App.cpp.s
 
+src/core/Log.o: src/core/Log.cpp.o
+
+.PHONY : src/core/Log.o
+
+# target to build an object file
+src/core/Log.cpp.o:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.o
+.PHONY : src/core/Log.cpp.o
+
+src/core/Log.i: src/core/Log.cpp.i
+
+.PHONY : src/core/Log.i
+
+# target to preprocess a source file
+src/core/Log.cpp.i:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.i
+.PHONY : src/core/Log.cpp.i
+
+src/core/Log.s: src/core/Log.cpp.s
+
+.PHONY : src/core/Log.s
+
+# target to generate assembly for a file
+src/core/Log.cpp.s:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.s
+.PHONY : src/core/Log.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -183,6 +210,9 @@ help:
 	@echo "... src/core/App.o"
 	@echo "... src/core/App.i"
 	@echo "... src/core/App.s"
+	@echo "... src/core/Log.o"
+	@echo "... src/core/Log.i"
+	@echo "... src/core/Log.s"
 .PHONY : help
 
 

@@ -1,2 +1,2 @@
-/usr/bin/ar qc libDI.a CMakeFiles/DI.dir/src/core/App.cpp.o
+/usr/bin/ar qc libDI.a CMakeFiles/DI.dir/src/core/App.cpp.o CMakeFiles/DI.dir/src/core/Log.cpp.o
 /usr/bin/ranlib libDI.a

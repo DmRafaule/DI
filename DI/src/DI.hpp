@@ -5,5 +5,6 @@
 
 /* Entry point */
 #include "Entry.hpp"
+#include "Log.hpp"
 
 /* Entry point */

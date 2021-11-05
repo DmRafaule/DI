@@ -1,6 +1,5 @@
 #include "DI.hpp"
 
-
 /*Inherit engine side App class*/
 class Sandbox : public DI::App{
 public:    

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/dep/DI/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/dep/DI/include/core
+CXX_INCLUDES = -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/dep/DI/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/dep/DI/include/core -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/dep/DI/include/external
 
 CXX_FLAGS = -O3 -DNDEBUG
 

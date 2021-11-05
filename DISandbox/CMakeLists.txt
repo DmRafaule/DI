@@ -4,7 +4,7 @@ project(sandbox)
 file(GLOB SOURCES "src/**")
 
 file(GLOB DI "dep/DI/lib/*.a*")
-set(INCLUDE_DIRECTORIES dep/DI/include dep/DI/include/core)
+set(INCLUDE_DIRECTORIES dep/DI/include dep/DI/include/core dep/DI/include/external)
 set(CMAKE_BUILD_TYPE Release)
 
 include_directories(${INCLUDE_DIRECTORIES})

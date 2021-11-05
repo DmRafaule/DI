@@ -5,3 +5,50 @@
  /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp
  /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.hpp
  /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.hpp
+../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.o
+ ../DI/dep/SPDLOG/include/spdlog/common-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/common.h
+ ../DI/dep/SPDLOG/include/spdlog/details/backtracer-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/details/backtracer.h
+ ../DI/dep/SPDLOG/include/spdlog/details/circular_q.h
+ ../DI/dep/SPDLOG/include/spdlog/details/console_globals.h
+ ../DI/dep/SPDLOG/include/spdlog/details/fmt_helper.h
+ ../DI/dep/SPDLOG/include/spdlog/details/log_msg-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/details/log_msg.h
+ ../DI/dep/SPDLOG/include/spdlog/details/log_msg_buffer-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/details/log_msg_buffer.h
+ ../DI/dep/SPDLOG/include/spdlog/details/null_mutex.h
+ ../DI/dep/SPDLOG/include/spdlog/details/os-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/details/os.h
+ ../DI/dep/SPDLOG/include/spdlog/details/periodic_worker-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/details/periodic_worker.h
+ ../DI/dep/SPDLOG/include/spdlog/details/registry-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/details/registry.h
+ ../DI/dep/SPDLOG/include/spdlog/details/synchronous_factory.h
+ ../DI/dep/SPDLOG/include/spdlog/details/windows_include.h
+ ../DI/dep/SPDLOG/include/spdlog/fmt/bundled/core.h
+ ../DI/dep/SPDLOG/include/spdlog/fmt/bundled/format-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/fmt/bundled/format.h
+ ../DI/dep/SPDLOG/include/spdlog/fmt/bundled/xchar.h
+ ../DI/dep/SPDLOG/include/spdlog/fmt/fmt.h
+ ../DI/dep/SPDLOG/include/spdlog/fmt/xchar.h
+ ../DI/dep/SPDLOG/include/spdlog/formatter.h
+ ../DI/dep/SPDLOG/include/spdlog/logger-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/logger.h
+ ../DI/dep/SPDLOG/include/spdlog/pattern_formatter-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/pattern_formatter.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/ansicolor_sink-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/ansicolor_sink.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/sink-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/sink.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/stdout_color_sinks-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/stdout_color_sinks.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/wincolor_sink-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/sinks/wincolor_sink.h
+ ../DI/dep/SPDLOG/include/spdlog/spdlog-inl.h
+ ../DI/dep/SPDLOG/include/spdlog/spdlog.h
+ ../DI/dep/SPDLOG/include/spdlog/tweakme.h
+ ../DI/dep/SPDLOG/include/spdlog/version.h
+ /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.hpp
+ /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Log.cpp
+ /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Log.hpp

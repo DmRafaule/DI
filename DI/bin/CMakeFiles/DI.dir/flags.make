@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/SDL2/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/GLEW/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/STB/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/GLM -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core
+CXX_INCLUDES = -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/SDL2/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/GLEW/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/STB/include -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/GLM -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core -I/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/SPDLOG/include
 
 CXX_FLAGS = -pthread
 
