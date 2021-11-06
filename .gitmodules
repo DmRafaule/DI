@@ -1,0 +1,12 @@
+[submodule "DI/dep/GLM"]
+	path = DI/dep/GLM
+	url = https://github.com/g-truc/glm.git
+[submodule "DI/dep/SPDLOG"]
+	path = DI/dep/SPDLOG
+	url = https://github.com/gabime/spdlog.git
+[submodule "DI/dep/GLEW"]
+	path = DI/dep/GLEW
+	url = https://github.com/Perlmint/glew-cmake.git
+[submodule "DI/dep/SDL2"]
+	path = DI/dep/SDL2
+	url = https://github.com/libsdl-org/SDL.git

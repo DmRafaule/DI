@@ -8,7 +8,7 @@ namespace DI{
 * Kinds of supported events
 */
 enum class EventType{
-   NONE,
+   None,
    AppUpdate, AppRender, AppTick,
    WinClose, WinResize, WinFocus,WinMoved,
    KeyPressed, KeyReleased,
