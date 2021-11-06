@@ -145,14 +145,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin//CMakeFiles/progress.marks
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/bin/all
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/lib//CMakeFiles/progress.marks
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/lib/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/bin/clean
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -162,12 +162,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/bin/preinstall
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/bin/preinstall
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -176,18 +176,18 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-../DI/bin/CMakeFiles/DI.dir/rule:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/bin/CMakeFiles/DI.dir/rule
-.PHONY : ../DI/bin/CMakeFiles/DI.dir/rule
+../DI/lib/CMakeFiles/DI.dir/rule:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ../DI/lib/CMakeFiles/DI.dir/rule
+.PHONY : ../DI/lib/CMakeFiles/DI.dir/rule
 
 # Convenience name for target.
-DI: ../DI/bin/CMakeFiles/DI.dir/rule
+DI: ../DI/lib/CMakeFiles/DI.dir/rule
 
 .PHONY : DI
 
 # fast build rule for target.
 DI/fast:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/build
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/build
 .PHONY : DI/fast
 
 src/core/App.o: src/core/App.cpp.o
@@ -196,7 +196,7 @@ src/core/App.o: src/core/App.cpp.o
 
 # target to build an object file
 src/core/App.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/App.cpp.o
 .PHONY : src/core/App.cpp.o
 
 src/core/App.i: src/core/App.cpp.i
@@ -205,7 +205,7 @@ src/core/App.i: src/core/App.cpp.i
 
 # target to preprocess a source file
 src/core/App.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.i
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/App.cpp.i
 .PHONY : src/core/App.cpp.i
 
 src/core/App.s: src/core/App.cpp.s
@@ -214,7 +214,7 @@ src/core/App.s: src/core/App.cpp.s
 
 # target to generate assembly for a file
 src/core/App.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.s
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/App.cpp.s
 .PHONY : src/core/App.cpp.s
 
 src/core/Core.o: src/core/Core.cpp.o
@@ -223,7 +223,7 @@ src/core/Core.o: src/core/Core.cpp.o
 
 # target to build an object file
 src/core/Core.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.o
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/Core.cpp.o
 .PHONY : src/core/Core.cpp.o
 
 src/core/Core.i: src/core/Core.cpp.i
@@ -232,7 +232,7 @@ src/core/Core.i: src/core/Core.cpp.i
 
 # target to preprocess a source file
 src/core/Core.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.i
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/Core.cpp.i
 .PHONY : src/core/Core.cpp.i
 
 src/core/Core.s: src/core/Core.cpp.s
@@ -241,7 +241,7 @@ src/core/Core.s: src/core/Core.cpp.s
 
 # target to generate assembly for a file
 src/core/Core.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.s
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/Core.cpp.s
 .PHONY : src/core/Core.cpp.s
 
 src/core/Log.o: src/core/Log.cpp.o
@@ -250,7 +250,7 @@ src/core/Log.o: src/core/Log.cpp.o
 
 # target to build an object file
 src/core/Log.cpp.o:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.o
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/Log.cpp.o
 .PHONY : src/core/Log.cpp.o
 
 src/core/Log.i: src/core/Log.cpp.i
@@ -259,7 +259,7 @@ src/core/Log.i: src/core/Log.cpp.i
 
 # target to preprocess a source file
 src/core/Log.cpp.i:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.i
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/Log.cpp.i
 .PHONY : src/core/Log.cpp.i
 
 src/core/Log.s: src/core/Log.cpp.s
@@ -268,7 +268,7 @@ src/core/Log.s: src/core/Log.cpp.s
 
 # target to generate assembly for a file
 src/core/Log.cpp.s:
-	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.s
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/lib/CMakeFiles/DI.dir/build.make ../DI/lib/CMakeFiles/DI.dir/src/core/Log.cpp.s
 .PHONY : src/core/Log.cpp.s
 
 # Help Target

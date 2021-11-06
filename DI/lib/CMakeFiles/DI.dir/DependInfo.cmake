@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.o"
-  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.o"
-  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Log.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin/CMakeFiles/DI.dir/src/core/Log.cpp.o"
+  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/App.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/lib/CMakeFiles/DI.dir/src/core/App.cpp.o"
+  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/lib/CMakeFiles/DI.dir/src/core/Core.cpp.o"
+  "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Log.cpp" "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/lib/CMakeFiles/DI.dir/src/core/Log.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -1906,6 +1906,10 @@ glm/vec2.hpp
 Core.hpp
 /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.hpp
 
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.cpp
+Core.hpp
+/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.hpp
+
 /home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/src/core/Core.hpp
 vector
 -

@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/dimond/Projects/ForOpenGL/DI_GameEngine")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/bin")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/lib")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)
