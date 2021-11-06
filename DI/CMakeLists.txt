@@ -8,8 +8,9 @@ file(GLOB SDL2 "dep/SDL2/lib/*.so*")
 file(GLOB GLEW "dep/GLEW/lib/*.so*")
 file(GLOB SPDLOG "dep/SPDLOG/build/*.a*")
 set(GL -lGL -lglut )
-set(INCLUDE_DIRECTORIES dep/SDL2/include dep/GLEW/include dep/STB/include dep/GLM src/core dep/SPDLOG/include)
+set(INCLUDE_DIRECTORIES dep/SDL2/include dep/GLEW/include dep/STB/include dep/GLM src/core src/events dep/SPDLOG/include)
 set(CMAKE_CXX_FLAGS -pthread)
+set(CMAKE_BUILD_TYPE Debug)
 
 
 

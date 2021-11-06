@@ -5,6 +5,9 @@
 
 /* Entry point */
 #include "Entry.hpp"
+/* Login system*/
 #include "Log.hpp"
-
-/* Entry point */
+/* Precompiled headers*/
+#include "Core.hpp"
+/* Event system */
+#include "Event.hpp"

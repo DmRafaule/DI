@@ -13,6 +13,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../DISandbox/dep/DI/include"
   "../DISandbox/dep/DI/include/core"
   "../DISandbox/dep/DI/include/external"
+  "../DISandbox/dep/DI/include/events"
   )
 
 # Targets to which this target links.

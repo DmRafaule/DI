@@ -171,6 +171,33 @@ src/core/App.cpp.s:
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/App.cpp.s
 .PHONY : src/core/App.cpp.s
 
+src/core/Core.o: src/core/Core.cpp.o
+
+.PHONY : src/core/Core.o
+
+# target to build an object file
+src/core/Core.cpp.o:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.o
+.PHONY : src/core/Core.cpp.o
+
+src/core/Core.i: src/core/Core.cpp.i
+
+.PHONY : src/core/Core.i
+
+# target to preprocess a source file
+src/core/Core.cpp.i:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.i
+.PHONY : src/core/Core.cpp.i
+
+src/core/Core.s: src/core/Core.cpp.s
+
+.PHONY : src/core/Core.s
+
+# target to generate assembly for a file
+src/core/Core.cpp.s:
+	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/build && $(MAKE) $(MAKESILENT) -f ../DI/bin/CMakeFiles/DI.dir/build.make ../DI/bin/CMakeFiles/DI.dir/src/core/Core.cpp.s
+.PHONY : src/core/Core.cpp.s
+
 src/core/Log.o: src/core/Log.cpp.o
 
 .PHONY : src/core/Log.o
@@ -210,6 +237,9 @@ help:
 	@echo "... src/core/App.o"
 	@echo "... src/core/App.i"
 	@echo "... src/core/App.s"
+	@echo "... src/core/Core.o"
+	@echo "... src/core/Core.i"
+	@echo "... src/core/Core.s"
 	@echo "... src/core/Log.o"
 	@echo "... src/core/Log.i"
 	@echo "... src/core/Log.s"

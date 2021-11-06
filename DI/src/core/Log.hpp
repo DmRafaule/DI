@@ -1,8 +1,8 @@
 #pragma once 
 
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 #include "Core.hpp"
-#include <memory>
 
 namespace DI{
 
@@ -15,6 +15,7 @@ private:
    static std::shared_ptr<spdlog::logger> _ConsoleEngine;
    static std::shared_ptr<spdlog::logger> _ConsoleClient;
 };
+
 
 };
 
