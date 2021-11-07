@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/sandbox.dir/src/Sandbox.cpp.o -o sandbox  -Wl,-rpath,/home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/dep/DI/lib ../dep/DI/lib/libDI.so 
