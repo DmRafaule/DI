@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.18)
 project(GameEngine)
 
+
 add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SDL2 ${CMAKE_SOURCE_DIR}/DI/dep/SDL2/build )
 add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/GLEW ${CMAKE_SOURCE_DIR}/DI/dep/GLEW )
 add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG/build )
+
 # Create Engine libs
 add_subdirectory(${CMAKE_SOURCE_DIR}/DI ${CMAKE_SOURCE_DIR}/DI/lib)
 # Move needed files
-file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/*.a) # Add all neede submodules in project
+file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/lib*.[a,so]*) # Add all neede submodules in project
 file(
    GLOB 
       INCLUDE_EXTERNAL 

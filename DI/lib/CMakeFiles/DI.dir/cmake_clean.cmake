@@ -2,8 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DI.dir/src/core/App.cpp.o"
   "CMakeFiles/DI.dir/src/core/Core.cpp.o"
   "CMakeFiles/DI.dir/src/core/Log.cpp.o"
-  "libDI.a"
   "libDI.pdb"
+  "libDI.so"
 )
 
 # Per-language clean rules from dependency scanning.

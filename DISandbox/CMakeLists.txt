@@ -3,7 +3,7 @@ project(sandbox)
 
 file(GLOB SOURCES "src/**")
 
-file(GLOB DI "dep/DI/lib/*.a*")
+file(GLOB DI "dep/DI/lib/*.so*")
 set(INCLUDE_DIRECTORIES dep/DI/include dep/DI/include/core dep/DI/include/external dep/DI/include/events)
 set(CMAKE_BUILD_TYPE Debug)
 

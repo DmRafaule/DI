@@ -98,7 +98,7 @@ sandbox_EXTERNAL_OBJECTS =
 
 ../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/src/Sandbox.cpp.o
 ../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/build.make
-../DISandbox/build/sandbox: ../DISandbox/dep/DI/lib/libDI.a
+../DISandbox/build/sandbox: ../DISandbox/dep/DI/lib/libDI.so
 ../DISandbox/build/sandbox: ../DISandbox/build/CMakeFiles/sandbox.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dimond/Projects/ForOpenGL/DI_GameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sandbox"
 	cd /home/dimond/Projects/ForOpenGL/DI_GameEngine/DISandbox/build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sandbox.dir/link.txt --verbose=$(VERBOSE)

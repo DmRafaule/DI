@@ -1,2 +1,1 @@
-/usr/bin/ar qc libDI.a CMakeFiles/DI.dir/src/core/App.cpp.o CMakeFiles/DI.dir/src/core/Core.cpp.o CMakeFiles/DI.dir/src/core/Log.cpp.o
-/usr/bin/ranlib libDI.a
+/usr/bin/c++ -fPIC -pthread -g -shared -Wl,-soname,libDI.so -o libDI.so CMakeFiles/DI.dir/src/core/App.cpp.o CMakeFiles/DI.dir/src/core/Core.cpp.o CMakeFiles/DI.dir/src/core/Log.cpp.o  -Wl,-rpath,/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/SDL2/build:/home/dimond/Projects/ForOpenGL/DI_GameEngine/DI/dep/GLEW/lib ../dep/SDL2/build/libSDL2-2.0.so ../dep/SDL2/build/libSDL2-2.0.so.0 ../dep/SDL2/build/libSDL2-2.0.so.0.17.0 ../dep/GLEW/lib/libglew-shared.so ../dep/GLEW/lib/libglew-shared.so.2.2.0 -lGL -lglut 
