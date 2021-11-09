@@ -9,7 +9,7 @@ add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG ${CMAKE_SOURCE_DIR}/DI/dep/S
 # Create Engine libs
 add_subdirectory(${CMAKE_SOURCE_DIR}/DI ${CMAKE_SOURCE_DIR}/DI/lib)
 # Move needed files
-file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/lib*.[a,so]*) # Add all neede submodules in project
+file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/lib*.[a,so,dll,lib]*) # Add all neede submodules in project
 file(
    GLOB 
       INCLUDE_EXTERNAL 

@@ -13,5 +13,7 @@ namespace DI{
 
       _ConsoleClient =  spdlog::stdout_color_mt("APP");
       _ConsoleClient->set_level(spdlog::level::trace);
+
+      DI_LOG_TRACE("Init Loggin system");
    }
 }

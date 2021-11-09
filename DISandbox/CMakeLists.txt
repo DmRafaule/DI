@@ -3,7 +3,12 @@ project(sandbox)
 
 file(GLOB SOURCES "src/**")
 
-file(GLOB DI "dep/DI/lib/*.so*")
+if (UNIX)
+   file(GLOB DI "dep/DI/lib/*.so*")
+endif (UNIX)
+if (WIN32)
+file(GLOB DI "dep/DI/lib/*.dll*")
+endif (WIN32)
 set(INCLUDE_DIRECTORIES dep/DI/include dep/DI/include/core dep/DI/include/external dep/DI/include/events)
 set(CMAKE_BUILD_TYPE Debug)
 
