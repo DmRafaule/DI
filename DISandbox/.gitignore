@@ -1,2 +1,4 @@
 .vscode
 build
+dep/DI/lib/*
+dep/DI/include/*

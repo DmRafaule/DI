@@ -1,12 +1,10 @@
 #pragma once 
 
 #include "Core.hpp"
-#include "Event.hpp"
 #include "SDL.h"
 
 namespace DI{
    // For now supporting only one window
-
 
    struct WinData{
       std::vector<glm::vec2>      size;
@@ -16,17 +14,19 @@ namespace DI{
       std::vector<SDL_Window*>    win;
       std::vector<SDL_GLContext>  context;
       uint                        id = -1;
+      bool                        isOpen;
    };
-   static WinData g_winData;
 
    class WinHandler{
    public:
-      static bool WinInit();
-      static bool WinKill();
-      static bool WinUpdate();
+      static void WinInit();
+      static void WinKill();
+      static void WinUpdate();
+      static void WinEvUpdate();
    private:
       WinHandler();
    };
+
 
 
 }; // namespace DI

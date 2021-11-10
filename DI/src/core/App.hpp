@@ -1,8 +1,8 @@
 #pragma once
 #include "Core.hpp"
-#include "Win.hpp"
 
 namespace DI{
+
 
    class App{
    public:
@@ -10,7 +10,7 @@ namespace DI{
       virtual ~App();
       void run();
    private:
-      bool     _isRunning = true;
+      bool _isRunning;
    };
    //To be defind in client
    App* CreateApp();

@@ -1,26 +1,28 @@
 #include "GL/glew.h"
 
 #include "App.hpp"
+#include "Win.hpp"
 #include "Log.hpp"
 
-#include "WindowEvent.hpp"
-#include "MouseEvent.hpp"
-#include "AppEvent.hpp"
-#include "KeyboardEvent.hpp"
+
 
 namespace DI{
+
+   extern WinData g_winData;
 
    App::App(){
       DI::Log::Init();
       DI_LOG_TRACE("Init App");
+      _isRunning = true;
       WinHandler::WinInit();
    }
    App::~App(){
-      WinHandler::WinKill();
       DI_LOG_TRACE("Kill app");
    }
    void App::run(){
-      while(WinHandler::WinUpdate());
+      while(g_winData.isOpen){
+         WinHandler::WinEvUpdate();
+         WinHandler::WinUpdate();
+      }
    }
-
 };
