@@ -7,24 +7,20 @@ namespace DI{
    // For now supporting only one window
 
    struct WinData{
-      std::vector<glm::vec2>      size;
-      std::vector<glm::vec2>      pos; 
-      std::vector<std::string>    title;
-      std::vector<Uint32>         flags;
-      std::vector<SDL_Window*>    win;
-      std::vector<SDL_GLContext>  context;
-      uint                        id = -1;
-      bool                        isOpen;
+      glm::vec2      size;
+      glm::vec2      pos; 
+      std::string    title;
+      Uint32         flags;
+      SDL_Window*    win;
+      SDL_GLContext  context;
+      bool           isOpen;
    };
 
    class WinHandler{
    public:
-      static void WinInit();
-      static void WinKill();
-      static void WinUpdate();
-      static void WinEvUpdate();
+      static void WinInit(WinData& data);
+      static void WinKill(WinData& data);
    private:
-      WinHandler();
    };
 
 
