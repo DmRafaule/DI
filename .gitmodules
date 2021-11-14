@@ -10,6 +10,3 @@
 [submodule "DI/dep/SDL2"]
 	path = DI/dep/SDL2
 	url = https://github.com/libsdl-org/SDL.git
-[submodule "DI/dep/IMGUI"]
-	path = DI/dep/IMGUI
-	url = https://github.com/ocornut/imgui.git
