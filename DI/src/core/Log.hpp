@@ -2,7 +2,7 @@
 
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
-#include "Core.hpp"
+#include "memory"
 
 namespace DI{
 

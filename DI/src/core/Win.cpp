@@ -1,7 +1,5 @@
-#include "GL/glew.h"
 #include "Win.hpp"
 #include "App.hpp"
-#include "Log.hpp"
 
 
 #include "imgui.h"
@@ -31,7 +29,7 @@ namespace DI{
       glEnable( GL_DEBUG_OUTPUT );
       // Init testing depth of pixels
       glEnable( GL_DEPTH_TEST );
-      //glDebugMessageCallback( ErrorCallback, 0 );
+      glDebugMessageCallback( ErrorCallback, 0 );
       // Init drawing mode
       glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
    }

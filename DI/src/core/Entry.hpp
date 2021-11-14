@@ -1,7 +1,6 @@
 #pragma once 
 
 #include "App.hpp"
-#include "Log.hpp"
 
 extern DI::App* DI::CreateApp();
 

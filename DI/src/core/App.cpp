@@ -1,8 +1,4 @@
-#include "GL/glew.h"
-
 #include "App.hpp"
-#include "Win.hpp"
-#include "Log.hpp"
 
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
@@ -24,6 +20,7 @@ namespace DI{
    }
    void App::run(){
       while(_winData.isOpen){
+         CoreTime  Timer;
          SDL_Event Event;
          while (SDL_PollEvent(&Event)){
             switch (Event.type){
@@ -117,10 +114,13 @@ namespace DI{
          ImGui::SetNextWindowPos( ImVec2(0,0) );
          ImGui::SetNextWindowSize( ImVec2(_winData.size.x * 0.2,_winData.size.y * 0.2) );
          ImGuiWindowFlags flags = (ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
+         
+         
          ImGui::Begin("Menu", &_winData.isImGUI,flags);
          ImGui::Text("Win pos:   %g %g",_winData.pos.x,_winData.pos.y);
          ImGui::Text("Win size:  %g %g",_winData.size.x,_winData.size.y);
          ImGui::Text("Mouse pos: %g %g",_appData.mousePos.x,_appData.mousePos.y);
+         ImGui::Text("Time since start: %g",CoreTime::time_since_start_programm);
          
 
          ImGui::End();
