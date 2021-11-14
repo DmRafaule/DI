@@ -3,9 +3,6 @@
 #include "App.hpp"
 #include "Log.hpp"
 
-#include "WindowEvent.hpp"
-#include "MouseEvent.hpp"
-#include "KeyboardEvent.hpp"
 
 #include "imgui.h"
 #include "imgui_impl_sdl.h"

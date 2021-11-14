@@ -4,7 +4,12 @@ project(DI)
 
 
 
-file(GLOB SOURCES "src/*.cpp" "src/core/*.cpp" "dep/IMGUI/*.cpp" "dep/IMGUI/backends/*.cpp")
+file(GLOB SOURCES 
+   "src/*.cpp" 
+   "src/core/*.cpp" 
+   "dep/IMGUI/*.cpp" 
+   "dep/IMGUI/backends/*sdl*.cpp" 
+   "dep/IMGUI/backends/*opengl*.cpp")
 
 
 if (WIN32)
@@ -24,7 +29,6 @@ set(INCLUDE_DIRECTORIES
    dep/STB/include 
    dep/GLM 
    src/core 
-   src/events 
    dep/SPDLOG/include 
    dep/IMGUI
    dep/IMGUI/backends)

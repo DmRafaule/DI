@@ -4,12 +4,6 @@
 #include "Win.hpp"
 #include "Log.hpp"
 
-#include "AppEvent.hpp"
-#include "WindowEvent.hpp"
-#include "MouseEvent.hpp"
-#include "AppEvent.hpp"
-#include "KeyboardEvent.hpp"
-
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
@@ -40,74 +34,55 @@ namespace DI{
             case SDL_WINDOWEVENT:{
                switch (Event.window.event){
                case SDL_WINDOWEVENT_RESIZED:{
-                  WinResize e(glm::vec2(Event.window.data1,Event.window.data2));
-                  _winData.size = e.getSize();
-                  onWinResized(e.getSize());
-                  DI_LOG_INFO(e);
+                  _winData.size = glm::vec2(Event.window.data1,Event.window.data2);
+                  onWinResized(_winData.size);
                   break;
                }
                case SDL_WINDOWEVENT_CLOSE:{
-                  WinClose e;
                   _winData.isOpen = false;
-                  DI_LOG_INFO(e);
                   break;
                }
                case SDL_WINDOWEVENT_TAKE_FOCUS:{
-                  WinFocus e(true);
                   onWinFocused();
-                  DI_LOG_INFO(e);
                   break;
                }
                case SDL_WINDOWEVENT_MOVED:{
-                  WinMoved e(glm::vec2(Event.window.data1,Event.window.data2));
-                  _winData.pos = e.getPos();
-                  onWinMoved(e.getPos());
-                  DI_LOG_INFO(e);
+                  _winData.pos = glm::vec2(Event.window.data1,Event.window.data2);
+                  onWinMoved(_winData.pos);
                   break;
                }
                }
                break;
             }
             case SDL_KEYUP:{
-               KeyReleased a(Event.key.keysym.sym);
-               _appData.key = a.getKeyCode();
-               onKeyReleased(a.getKeyCode());
-               DI_LOG_INFO(a);
+               _appData.key = Event.key.keysym.sym;
+               onKeyReleased(_appData.key);
                break;
             }
             case SDL_KEYDOWN:{
-              KeyPressed a(Event.key.keysym.sym,Event.key.repeat);
-               _appData.key = a.getKeyCode(); 
-               _appData.isKey_repeat = a.getRepeatCount(); 
-               onKeyPressed(a.getKeyCode(),a.getRepeatCount());
-               DI_LOG_INFO(a);
+               _appData.key = Event.key.keysym.sym; 
+               _appData.isKey_repeat = Event.key.repeat; 
+               onKeyPressed(_appData.key, _appData.isKey_repeat);
                break;
             }
             case SDL_MOUSEMOTION:{
-               MouseMoved a(glm::vec2(Event.motion.x,Event.motion.y));
-               _appData.mousePos = a.getPos();
-               onMouseMoved(a.getPos());
-               DI_LOG_INFO(a);
+               _appData.mousePos = glm::vec2(Event.motion.x,Event.motion.y);
+               onMouseMoved(_appData.mousePos);
                break;
             }
             case SDL_MOUSEWHEEL:{
-               MouseScrolled a(glm::vec2(Event.wheel.x,Event.wheel.y));
-               _appData.mouseWheelOffset = a.getOffset();
-               onMouseScrolled(a.getOffset());
-               DI_LOG_INFO(a);
+               _appData.mouseWheelOffset = glm::vec2(Event.wheel.x,Event.wheel.y);
+               onMouseScrolled(_appData.mouseWheelOffset);
+               break;
             }
             case SDL_MOUSEBUTTONDOWN:{
-               MouseButtonPressed a(Event.key.keysym.sym);
-               _appData.key = a.getMouseButton();
-               onMousePressed(a.getMouseButton(),0);
-               DI_LOG_INFO(a);
+               _appData.key = Event.key.keysym.sym;
+               onMousePressed(Event.key.keysym.sym,0);
                break;
             }
             case SDL_MOUSEBUTTONUP:{
-               MouseButtonReleased a(Event.key.keysym.sym);
-               _appData.key = a.getMouseButton();
-               onMouseReleased(a.getMouseButton());
-               DI_LOG_INFO(a);
+               _appData.key = Event.key.keysym.sym;
+               onMouseReleased(_appData.key);
                break;
             }
             default:{
@@ -139,11 +114,15 @@ namespace DI{
          ImGui_ImplOpenGL3_NewFrame();
          ImGui_ImplSDL2_NewFrame();
          ImGui::NewFrame();
+         ImGui::SetNextWindowPos( ImVec2(0,0) );
+         ImGui::SetNextWindowSize( ImVec2(_winData.size.x * 0.2,_winData.size.y * 0.2) );
+         ImGuiWindowFlags flags = (ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
+         ImGui::Begin("Menu", &_winData.isImGUI,flags);
+         ImGui::Text("Win pos:   %g %g",_winData.pos.x,_winData.pos.y);
+         ImGui::Text("Win size:  %g %g",_winData.size.x,_winData.size.y);
+         ImGui::Text("Mouse pos: %g %g",_appData.mousePos.x,_appData.mousePos.y);
+         
 
-         ImGui::Begin("Another Window", &_winData.isImGUI);
-         ImGui::Text("Hello from another window!");
-         if (ImGui::Button("Close Me"))
-            _winData.isImGUI = false;
          ImGui::End();
 
          // Rendering
