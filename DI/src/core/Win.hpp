@@ -14,12 +14,15 @@ namespace DI{
       SDL_Window*    win;
       SDL_GLContext  context;
       bool           isOpen;
+      bool           isImGUI;
    };
 
    class WinHandler{
    public:
       static void WinInit(WinData& data);
       static void WinKill(WinData& data);
+      static void ImGUIInit(WinData& data);
+      static void ImGUIKill(WinData& data);
    private:
    };
 

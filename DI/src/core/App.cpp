@@ -3,12 +3,16 @@
 #include "App.hpp"
 #include "Win.hpp"
 #include "Log.hpp"
+
 #include "AppEvent.hpp"
 #include "WindowEvent.hpp"
 #include "MouseEvent.hpp"
 #include "AppEvent.hpp"
 #include "KeyboardEvent.hpp"
 
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_opengl3.h"
 
 
 namespace DI{
@@ -17,8 +21,11 @@ namespace DI{
       Log::Init();
       DI_LOG_TRACE("Init App");
       WinHandler::WinInit(_winData);
+      WinHandler::ImGUIInit(_winData);
    }
    App::~App(){
+      WinHandler::ImGUIKill(_winData);
+      WinHandler::WinKill(_winData);
       DI_LOG_TRACE("Kill App");
    }
    void App::run(){
@@ -28,7 +35,6 @@ namespace DI{
             switch (Event.type){
             case SDL_QUIT:{
                _winData.isOpen = false;
-               WinHandler::WinKill(_winData);
                break;
             }
             case SDL_WINDOWEVENT:{
@@ -109,13 +115,40 @@ namespace DI{
             }
             }
             updateEvents_loop(Event);
+            updateEvents_loop_ImGUI(Event);
          }
+
+         
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
          glClearColor(0.141, 0.133, 0.145, 1.0);
+
+         updateRender_loop_ImGUI();
 
          updateRender_loop();
       
          SDL_GL_SwapWindow(_winData.win);
+      }
+   }
+
+   void App::updateEvents_loop_ImGUI(SDL_Event& event){
+      if (_winData.isImGUI)
+         ImGui_ImplSDL2_ProcessEvent(&event);
+   }
+   void App::updateRender_loop_ImGUI(){
+      if (_winData.isImGUI){
+         ImGui_ImplOpenGL3_NewFrame();
+         ImGui_ImplSDL2_NewFrame();
+         ImGui::NewFrame();
+
+         ImGui::Begin("Another Window", &_winData.isImGUI);
+         ImGui::Text("Hello from another window!");
+         if (ImGui::Button("Close Me"))
+            _winData.isImGUI = false;
+         ImGui::End();
+
+         // Rendering
+         ImGui::Render();
+         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
       }
    }
 };

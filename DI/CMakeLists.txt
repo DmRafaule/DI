@@ -4,7 +4,7 @@ project(DI)
 
 
 
-file(GLOB SOURCES "src/*.cpp" "src/core/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/core/*.cpp" "dep/IMGUI/*.cpp" "dep/IMGUI/backends/*.cpp")
 
 
 if (WIN32)
@@ -18,7 +18,16 @@ if (UNIX)
    file(GLOB SPDLOG "dep/SPDLOG/build/*.so*")
 endif(UNIX)
 set(GL -lGL -lglut )
-set(INCLUDE_DIRECTORIES dep/SDL2/include dep/GLEW/include dep/STB/include dep/GLM src/core src/events dep/SPDLOG/include)
+set(INCLUDE_DIRECTORIES 
+   dep/SDL2/include 
+   dep/GLEW/include 
+   dep/STB/include 
+   dep/GLM 
+   src/core 
+   src/events 
+   dep/SPDLOG/include 
+   dep/IMGUI
+   dep/IMGUI/backends)
 set(CMAKE_CXX_FLAGS -pthread)
 set(BUILD_SHARED_LIBS ON)
 set(CMAKE_BUILD_TYPE Debug)

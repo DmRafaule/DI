@@ -18,7 +18,7 @@ namespace DI{
       App();
       virtual ~App();
       void run();
-
+   protected:
       // To be used in client side of app
       virtual void updateEvents_loop(SDL_Event& event){};
       virtual void updateRender_loop(){};
@@ -33,6 +33,11 @@ namespace DI{
       virtual void onMousePressed(int key, bool isKey_repeat){};
       virtual void onMouseReleased(int key){};
 
+
+      // ImGUI functions
+      virtual void updateRender_loop_ImGUI();
+   private:
+      void updateEvents_loop_ImGUI(SDL_Event& event);
    protected:
       WinData _winData;
       AppData _appData;
