@@ -7,6 +7,7 @@ project(DI)
 file(GLOB SOURCES 
    "src/*.cpp" 
    "src/core/*.cpp" 
+   "src/renderer/*.cpp"
    "dep/IMGUI/*.cpp" 
    "dep/IMGUI/backends/*sdl*.cpp" 
    "dep/IMGUI/backends/*opengl*.cpp")
@@ -29,6 +30,7 @@ set(INCLUDE_DIRECTORIES
    dep/STB/include 
    dep/GLM 
    src/core 
+   src/renderer
    dep/SPDLOG/include 
    dep/IMGUI
    dep/IMGUI/backends)

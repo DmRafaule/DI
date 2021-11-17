@@ -40,8 +40,6 @@ namespace DI{
       SDL_Quit();
    }
 
-
-
    void WinHandler::ImGUIInit(WinData& data){
       data.isImGUI = true;
       DI_LOG_TRACE("Init ImGUI");
