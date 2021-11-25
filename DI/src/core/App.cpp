@@ -4,7 +4,6 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
 
-
 namespace DI{
    
    App::App(){
@@ -13,24 +12,6 @@ namespace DI{
       WinHandler::WinInit(_winData);
       WinHandler::ImGUIInit(_winData);
 
-      bf1.verticies.count = 12;
-      bf1.verticies.data = new float[bf1.verticies.count]{
-          0.5f, 0.5f, 0.0f,
-          0.5f,-0.5f, 0.0f,
-         -0.5f,-0.5f, 0.0f,
-         -0.5f, 0.5f, 0.0f
-      };
-      bf1.elements.count = 6;
-      bf1.elements.data = new unsigned int[bf1.elements.count]{
-          0,1,3,
-          3,2,1
-      };
-      BufferHandler::Set(bf1);
-      LayoutHandler::Set("res/simpleColor.vert");
-         
-      glBindVertexArray(0);
-
-      sh1 = new Shader("res/simpleColor.vert","res/simpleColor.frag");
    }
    App::~App(){
       WinHandler::ImGUIKill(_winData);
@@ -41,6 +22,7 @@ namespace DI{
       while(_winData.isOpen){
          CoreTime  Timer;
          SDL_Event Event;
+         
          while (SDL_PollEvent(&Event)){
             switch (Event.type){
             case SDL_QUIT:{
@@ -112,10 +94,6 @@ namespace DI{
          
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
          glClearColor(0.141, 0.133, 0.145, 1.0);
-
-         sh1->use();
-         glBindVertexArray(bf1.vao);
-         glDrawElements(GL_TRIANGLES,bf1.elements.count,GL_UNSIGNED_INT,0);
          
          updateRender_loop_ImGUI();
 

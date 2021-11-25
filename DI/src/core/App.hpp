@@ -38,8 +38,6 @@ namespace DI{
       virtual void updateRender_loop_ImGUI();
    private:
       void updateEvents_loop_ImGUI(SDL_Event& event);
-      Buffer   bf1;
-      Shader  *sh1;
    protected:
       WinData _winData;
       AppData _appData;

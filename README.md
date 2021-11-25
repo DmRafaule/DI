@@ -12,3 +12,6 @@ For now engine contain and consits from:
    * Event system  (Uppon SDL events)
    * Loging system (App logs and DI logs) + opengl debug
    * Core Timer
+   * Attribute handler 
+   * Support uniforms
+   * Camera support(without rolling)

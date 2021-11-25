@@ -1,6 +1,8 @@
 #include "Time.hpp"
 #include <iostream>
 
+namespace DI{
+
 double CoreTime::time_since_start_programm = 0;
 double CoreTime::tic = 0;
 
@@ -13,4 +15,6 @@ CoreTime::~CoreTime(){
    std::chrono::duration<double> elapsed_seconds = end - start;
    tic = elapsed_seconds.count();
    time_since_start_programm += elapsed_seconds.count();
+}
+
 }

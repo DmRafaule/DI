@@ -1,20 +1,35 @@
+#include "Core.hpp"
 #include "Buffer.hpp"
+
 
 namespace DI {
 
-   void BufferHandler::Set(Buffer &buffer){
-      glGenVertexArrays(1,&buffer.vao);
-      glBindVertexArray(buffer.vao);
+    void MeshHandler::Set(Mesh &mesh){
+      glGenVertexArrays(1,&mesh.buffer.vao);
+      glBindVertexArray(mesh.buffer.vao);
 
-      glGenBuffers(1,&buffer.vbo);
-      glBindBuffer(GL_ARRAY_BUFFER,buffer.vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(float) * buffer.verticies.count, buffer.verticies.data, GL_STATIC_DRAW);
+      glGenBuffers(1,&mesh.buffer.vbo);
+      glBindBuffer(GL_ARRAY_BUFFER,mesh.buffer.vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh.verticies.count, mesh.verticies.data, GL_STATIC_DRAW);
 
-      glGenBuffers(1,&buffer.ebo);
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer.ebo);
-      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * buffer.elements.count, buffer.elements.data, GL_STATIC_DRAW);
-   }
-   int LayoutHandler::get_layout_size(const std::string& src){
+      glGenBuffers(1,&mesh.buffer.ebo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.buffer.ebo);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * mesh.elements.count, mesh.elements.data, GL_STATIC_DRAW);
+      mesh.model_matrix = glm::mat4(1.0f);
+    }
+    void MeshHandler::Scale(Mesh &mesh, const glm::vec3 offset){
+        mesh.model_matrix = glm::mat4(1.0f);
+        mesh.model_matrix = glm::scale(mesh.model_matrix,offset);
+    }
+    void MeshHandler::Translate(Mesh &mesh, const glm::vec3 offset){
+        mesh.model_matrix = glm::mat4(1.0f);
+        mesh.model_matrix = glm::translate(mesh.model_matrix,offset);
+    }
+    void MeshHandler::Rotate(Mesh &mesh, const float angle, const glm::vec3 offset){
+        mesh.model_matrix = glm::mat4(1.0f);
+        mesh.model_matrix = glm::rotate(mesh.model_matrix,glm::radians(angle),offset);
+    }
+    int LayoutHandler::get_layout_size(const std::string& src){
       int result = 0;
       int start = src.find("layout",0);
       int end = 0;
@@ -26,10 +41,10 @@ namespace DI {
           end   = src.find(";",start);
           result++;
        }
-      return result;
-   }
-   void LayoutHandler::Set(const std::string& vertShader){
-      std::string src = Shader::parse(vertShader);
+       return result;
+    }
+    void LayoutHandler::Set(const std::string& vertShader){
+      std::string src = ShaderHandler::Parse(vertShader);
       std::array<std::string,5> types_simple({"bool","float","int","uint","double"});
       std::array<std::string,6> types_compex({"vec","ivec","uvec","bvec","dvec","mat"});
       int size = get_layout_size(src);
@@ -102,8 +117,9 @@ namespace DI {
          DI_LOG_INFO("Set vertex attribute index={0} count={1} type=GL_FLOAT norm=GL_FALSE stribe={2} entry={3}",layout[i].index,layout[i].count,layout[i].stribe,layout[i].entry);
       }
       
+      glBindVertexArray(0);
 
       delete[] layout;
-   }
-
+    }
+   
 }

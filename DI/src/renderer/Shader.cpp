@@ -1,32 +1,31 @@
 #include "Core.hpp"
 #include "Shader.hpp"
+#include "Buffer.hpp"
 
-#include <GL/glew.h>
 
 namespace DI{
-Shader::Shader(const std::string& vertex_name, const std::string& fragment_name, const bool& isUseNow){
-   program = glCreateProgram();
-   uint vs = compile(GL_VERTEX_SHADER,Shader::parse(vertex_name));
-   uint fs = compile(GL_FRAGMENT_SHADER,Shader::parse(fragment_name));
+void ShaderHandler::Set(Shader& shader, const std::string& vertex_name, const std::string& fragment_name){
+   // Get source of shader files
+   std::string vertex_src = ShaderHandler::Parse(vertex_name);
+   std::string fragment_src = ShaderHandler::Parse(fragment_name);
+   // Set uniforms
+   shader.id = glCreateProgram();
+   uint vs = Compile(GL_VERTEX_SHADER,vertex_src);
+   uint fs = Compile(GL_FRAGMENT_SHADER,fragment_src);
 
-   glAttachShader(program,vs);
-   glAttachShader(program,fs);
-   glLinkProgram(program);
-   glValidateProgram(program);
+   glAttachShader(shader.id,vs);
+   glAttachShader(shader.id,fs);
+   glLinkProgram(shader.id);
+   glValidateProgram(shader.id);
 
    glDeleteShader(vs);
    glDeleteShader(fs);
+}
 
-   if (isUseNow)
-      glUseProgram(program);
+void ShaderHandler::Use(Shader& shader){
+   glUseProgram(shader.id);
 }
-Shader::~Shader(){
-
-}
-void Shader::use(){
-   glUseProgram(program);
-}
-std::string Shader::parse(const std::string& name){
+std::string ShaderHandler::Parse(const std::string& name){
    std::fstream file;
    std::string fileContent{""};
    file.open(name);
@@ -42,7 +41,7 @@ std::string Shader::parse(const std::string& name){
    }
    return fileContent;
 }
-uint Shader::compile(uint type, const std::string& source){
+unsigned int ShaderHandler::Compile(unsigned int type, const std::string& source){
    unsigned int id = glCreateShader(type);
    const char* src = source.c_str();
    glShaderSource(id,1,&src,nullptr); 
@@ -64,4 +63,62 @@ uint Shader::compile(uint type, const std::string& source){
    return id;
 }
 
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const float& arg){
+   glUniform1f(glGetUniformLocation(shader.id,name),(float)arg);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const double& arg){
+   glUniform1d(glGetUniformLocation(shader.id,name),arg);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const int& arg){
+   glUniform1i(glGetUniformLocation(shader.id,name),arg);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const unsigned int& arg){
+   glUniform1ui(glGetUniformLocation(shader.id,name),arg);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const float& arg1, const float& arg2){
+   glUniform2f(glGetUniformLocation(shader.id,name),arg1,arg2);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const float& arg1, const float& arg2, const float& arg3){
+   glUniform3f(glGetUniformLocation(shader.id,name),arg1,arg2,arg3);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const float& arg1, const float& arg2, const float& arg3, const float& arg4){
+   glUniform4f(glGetUniformLocation(shader.id,name),arg1,arg2,arg3,arg4);
+}
+
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const int& arg1, const int& arg2){
+   glUniform2i(glGetUniformLocation(shader.id,name),arg1,arg2);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const int& arg1, const int& arg2, const int& arg3){
+   glUniform3i(glGetUniformLocation(shader.id,name),arg1,arg2,arg3);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const int& arg1, const int& arg2, const int& arg3, const int& arg4){
+   glUniform4i(glGetUniformLocation(shader.id,name),arg1,arg2,arg3,arg4);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const unsigned int& arg1, const unsigned int& arg2){
+   glUniform2ui(glGetUniformLocation(shader.id,name),arg1,arg2);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const unsigned int& arg1, const unsigned int& arg2, const unsigned int& arg3){
+   glUniform3ui(glGetUniformLocation(shader.id,name),arg1,arg2,arg3);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const unsigned int& arg1, const unsigned int& arg2, const unsigned int& arg3, const unsigned int& arg4){
+   glUniform4ui(glGetUniformLocation(shader.id,name),arg1,arg2,arg3,arg4);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const double& arg1, const double& arg2){
+   glUniform2d(glGetUniformLocation(shader.id,name),arg1,arg2);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const double& arg1, const double& arg2, const double& arg3){
+   glUniform3d(glGetUniformLocation(shader.id,name),arg1,arg2,arg3);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const double& arg1, const double& arg2, const double& arg3, const double& arg4){
+   glUniform4d(glGetUniformLocation(shader.id,name),arg1,arg2,arg3,arg4);
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const glm::mat2& arg){
+   glUniformMatrix2fv(glGetUniformLocation(shader.id,name),1,GL_FALSE,glm::value_ptr(arg));
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const glm::mat3& arg){
+   glUniformMatrix3fv(glGetUniformLocation(shader.id,name),1,GL_FALSE,glm::value_ptr(arg));
+}
+void ShaderHandler::SetUniform(Shader &shader, const char* name, const glm::mat4& arg){
+   glUniformMatrix4fv(glGetUniformLocation(shader.id,name),1,GL_FALSE,glm::value_ptr(arg));
+}
 }
