@@ -33,3 +33,13 @@
 #include "View.hpp"
 #include "Texture.hpp"
 #include "Buffer.hpp"
+
+
+
+namespace DI{
+	#define Ref    	std::shared_ptr
+	#define Scope  	std::unique_ptr
+	#define C_Ref 	std::make_shared
+	#define C_Scope std::make_unique
+};
+

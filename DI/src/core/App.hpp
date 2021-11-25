@@ -39,8 +39,8 @@ namespace DI{
    private:
       void updateEvents_loop_ImGUI(SDL_Event& event);
    protected:
-      WinData _winData;
-      AppData _appData;
+      Scope<WinData> _winData;
+      Scope<AppData> _appData;
    };
    //To be defind in client
    App* CreateApp();

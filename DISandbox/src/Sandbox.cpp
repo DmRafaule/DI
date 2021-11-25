@@ -1,11 +1,10 @@
 #include "DI.hpp"
 
-
 /*Inherit engine side App class*/
 class Sandbox : public DI::App{
 public:    
     Sandbox(){
-        m1 = new DI::Mesh();
+        m1 = C_Ref<DI::Mesh>();
         m1->verticies.count = 24;
         m1->verticies.data = new float[m1->verticies.count]{
              0.5f, 0.5f,  0.5f, 
@@ -39,8 +38,9 @@ public:
         };
         DI::MeshHandler::Set(*m1);
         DI::LayoutHandler::Set("res/simpleColor.vert");
-             
-        m2 = new DI::Mesh();
+        
+
+        m2 = C_Ref<DI::Mesh>();
         m2->verticies.count = 24;
         m2->verticies.data = new float[m2->verticies.count]{
              0.5f, 0.5f,  0.5f, 
@@ -72,19 +72,19 @@ public:
             4,5,7,//Back face
             7,5,6,
         };
+        
         DI::MeshHandler::Set(*m2);
-        DI::LayoutHandler::Set("res/simpleColor.vert");
-             
-    
-        
+        DI::LayoutHandler::Set("res/simpleColor1.vert");
+          
+        sh1 = C_Ref<DI::Shader>();
+        sh2 = C_Ref<DI::Shader>();
+        tx1 = C_Ref<DI::Texture>();
+        view1 = C_Ref<DI::View>();
 
-        sh1   = new DI::Shader();
-        tx1   = new DI::Texture();
-        view1 = new DI::View();
-        
         DI::TextureHandler::Set(*tx1,std::vector<std::string>({"res/meeting-guwei.jpg"}),std::vector<uint>({GL_CLAMP_TO_BORDER,GL_CLAMP_TO_BORDER,GL_NEAREST,GL_NEAREST}));
         DI::ShaderHandler::Set(*sh1,"res/simpleColor.vert","res/simpleColor.frag");
-        DI::ViewHandler::SetDefault(*view1,_winData.size);
+        DI::ShaderHandler::Set(*sh2,"res/simpleColor1.vert","res/simpleColor1.frag");
+        DI::ViewHandler::SetDefault(*view1,_winData->size);
     }
     ~Sandbox(){}
 
@@ -99,9 +99,11 @@ public:
         DI::ShaderHandler::SetUniform(*sh1, "u_time",(float)DI::CoreTime::time_since_start_programm);
         DI::RenderHandler::Draw(*m1);
 
+        DI::ShaderHandler::Use(*sh2);
+        DI::TextureHandler::Use(*tx1,*sh2);
         DI::MeshHandler::Translate(*m1,glm::vec3(10.f,0.f,0.f));
-        DI::ShaderHandler::SetUniform(*sh1, "u_mvp",view1->proj * view1->eye * m2->model_matrix);
-        DI::ShaderHandler::SetUniform(*sh1, "u_time",(float)DI::CoreTime::time_since_start_programm);
+        DI::ShaderHandler::SetUniform(*sh2, "u_mvp",view1->proj * view1->eye * m2->model_matrix);
+        DI::ShaderHandler::SetUniform(*sh2, "u_time",(float)DI::CoreTime::time_since_start_programm);
         DI::RenderHandler::Draw(*m2);
     }
     void onKeyPressed(int key, bool isKey_repeat){
@@ -131,11 +133,12 @@ public:
         DI::ViewHandler::SetMotion(*view1,glm::vec2(pos.x,pos.y));
     }
 private:
-    DI::Mesh            *m1;
-    DI::Mesh            *m2;
-    DI::Shader          *sh1;
-    DI::View            *view1;
-    DI::Texture         *tx1;
+    Ref<DI::Mesh>       m1;
+    Ref<DI::Mesh>       m2;
+    Ref<DI::Shader>     sh1;
+    Ref<DI::Shader>     sh2;
+    Ref<DI::View>       view1;
+    Ref<DI::Texture>    tx1;
 };
 /*Define our application for mem alloc on engine side*/
 DI::App* DI::CreateApp(){
