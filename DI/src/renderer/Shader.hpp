@@ -1,9 +1,6 @@
 #pragma once
 
-#include <string>
-#include <list>
-#include "Buffer.hpp"
-#include <unordered_map>
+#include "Core.hpp"
 
 namespace DI{
 

@@ -15,3 +15,4 @@ For now engine contain and consits from:
    * Attribute handler 
    * Support uniforms
    * Camera support(without rolling)
+   * Mem managment(not realy good)

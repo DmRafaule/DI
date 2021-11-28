@@ -1,13 +1,15 @@
 #pragma once
 
-#include "Core.hpp"
-
 
 namespace DI{
+	
+	struct Mesh;
 
 	class RenderHandler{
 	public:
-		static void Draw(Mesh &mesh);
+		// Draw mesh using with "elements"
+		static void DrawElements(Mesh &mesh);
+		static void DrawArrays(Mesh &mesh);
 	private:
 		RenderHandler();
 	};

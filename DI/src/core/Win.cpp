@@ -1,5 +1,4 @@
 #include "Win.hpp"
-#include "App.hpp"
 
 
 #include "imgui.h"
@@ -19,6 +18,8 @@ namespace DI{
       data.win     = SDL_CreateWindow(data.title.c_str(), data.pos.x, data.pos.y, data.size.x, data.size.y, data.flags);    
       data.context = SDL_GL_CreateContext(data.win);
       SDL_GL_MakeCurrent(data.win, data.context);
+      //SDL_ShowCursor(SDL_DISABLE);
+      //SDL_WarpMouseInWindow(data.win,data.size.x/2.f,data.size.y/2.f);
       SDL_GL_SetSwapInterval(1); // Enable vsync
 
       // Pull out OpenGL defined functions from gpu

@@ -1,5 +1,5 @@
-#include "Core.hpp"
 #include "Buffer.hpp"
+#include "Shader.hpp"
 
 
 namespace DI {
@@ -18,15 +18,12 @@ namespace DI {
       mesh.model_matrix = glm::mat4(1.0f);
     }
     void MeshHandler::Scale(Mesh &mesh, const glm::vec3 offset){
-        mesh.model_matrix = glm::mat4(1.0f);
         mesh.model_matrix = glm::scale(mesh.model_matrix,offset);
     }
     void MeshHandler::Translate(Mesh &mesh, const glm::vec3 offset){
-        mesh.model_matrix = glm::mat4(1.0f);
         mesh.model_matrix = glm::translate(mesh.model_matrix,offset);
     }
     void MeshHandler::Rotate(Mesh &mesh, const float angle, const glm::vec3 offset){
-        mesh.model_matrix = glm::mat4(1.0f);
         mesh.model_matrix = glm::rotate(mesh.model_matrix,glm::radians(angle),offset);
     }
     int LayoutHandler::get_layout_size(const std::string& src){

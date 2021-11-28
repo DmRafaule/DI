@@ -4,6 +4,8 @@
 
 
 
+struct Shader;
+
 namespace DI{
 
 struct Texture{
@@ -15,12 +17,17 @@ struct Texture{
    std::vector<int*> width;
    std::vector<int*> height;
    std::vector<int*> chanels;
+   unsigned int wrap_s   = GL_CLAMP_TO_BORDER; 
+   unsigned int wrap_t   = GL_CLAMP_TO_BORDER; 
+   unsigned int min_filt = GL_NEAREST; 
+   unsigned int mag_filt = GL_NEAREST;
 
 };
 
 class TextureHandler{
 public:
-   static void Set(Texture &texture, std::vector<std::string> path,std::vector<unsigned int> filters);
+   static void Set(Texture &texture, std::vector<std::string> path);
+   static void SetFilters(Texture &texture,unsigned int wrap_s, unsigned int wrap_t, unsigned int min_filt, unsigned int mag_filt);
    static void Use(Texture &texture, Shader& shad);
 private:
    TextureHandler();

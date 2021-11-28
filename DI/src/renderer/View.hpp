@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace DI{
 
@@ -26,7 +27,7 @@ struct View{
    float roll;
    float ratio;    // Ratio of screen 
 
-   // Find other place
+   //TODO: Find other place
    float lastX, lastY;
    bool isFirstTime;
 };
@@ -34,12 +35,14 @@ struct View{
 // Create overloaded func for  diff types of cammeras
 class ViewHandler{
 public:
-   
+   // Set view and proj matrices to def values
    static void SetDefault(View &view, glm::vec2 &size);
+   // Set view and proj matrices to custom values
    static void SetCustom(View &view,const glm::vec3 pos,const glm::vec3 focus,const float spead,const float fovy,const glm::vec2 &size, const Projection type);
+   // Use lookup function to change the world
    static void Use(View &view);
    static void SetPos(View &view, glm::vec3 pos);
-   static void SetRot(View &view, float angle, glm::vec3 offset);
+   static void SetRot(View &view, float angle, glm::vec3 offset);//TODO: implement (mouse control inverse)
    static void SetMotion(View &view, glm::vec2 motion);
    static void SetZoom(View &view, float motion);
 

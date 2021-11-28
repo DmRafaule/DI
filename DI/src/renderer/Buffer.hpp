@@ -1,10 +1,6 @@
 #pragma once 
 
-#include <string>
-#include <list>
-#include <unordered_map>
-#include <functional>
-#include <glm/gtc/type_ptr.hpp>
+#include "Core.hpp"
 
 
 namespace DI{

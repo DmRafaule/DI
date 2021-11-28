@@ -1,8 +1,6 @@
 #pragma once
 #include "Core.hpp"
 #include "Win.hpp"
-#include "SDL.h"
-#include "Buffer.hpp"
 
 namespace DI{
 
@@ -11,6 +9,17 @@ namespace DI{
       bool        isKey_repeat;
       glm::vec2   mousePos;
       glm::vec2   mouseWheelOffset;
+   };
+   struct ImGUIData{
+      float slot0;
+      float slot1;
+      float slot2;
+      float slot3;
+      float slot4;
+      float slot5;
+      float slot6;
+      float slot7;
+      float slot8;
    };
 
    class App{
@@ -39,8 +48,9 @@ namespace DI{
    private:
       void updateEvents_loop_ImGUI(SDL_Event& event);
    protected:
-      Scope<WinData> _winData;
-      Scope<AppData> _appData;
+      Scope<WinData>    _winData;
+      Scope<AppData>    _appData;
+      Scope<ImGUIData>  _imguiData;
    };
    //To be defind in client
    App* CreateApp();

@@ -1,6 +1,7 @@
 #pragma once
 /*Precompiled headers*/
 // GL stuff
+// OpenGL stuff
 #include "GL/glew.h"
 
 // STL stuff
@@ -25,21 +26,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-// My src
+// My stuff
 #include "Log.hpp"
 #include "Debuger.hpp"
 #include "Time.hpp"
-#include "Shader.hpp"
-#include "View.hpp"
-#include "Texture.hpp"
-#include "Buffer.hpp"
-
-
-
-namespace DI{
-	#define Ref    	std::shared_ptr
-	#define Scope  	std::unique_ptr
-	#define C_Ref 	std::make_shared
-	#define C_Scope std::make_unique
-};
-
+#include "Mem.hpp"

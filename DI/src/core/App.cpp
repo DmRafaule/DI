@@ -5,12 +5,12 @@
 #include "imgui_impl_opengl3.h"
 
 namespace DI{
-   
    App::App(){
       Log::Init();
       DI_LOG_TRACE("Init App");
       _winData = C_Scope<WinData>();
       _appData = C_Scope<AppData>();
+      _imguiData = C_Scope<ImGUIData>();
       WinHandler::WinInit(*_winData);
       WinHandler::ImGUIInit(*_winData);
 
@@ -96,9 +96,9 @@ namespace DI{
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
          glClearColor(0.141, 0.133, 0.145, 1.0);
          
-         updateRender_loop_ImGUI();
-
          updateRender_loop();
+
+         updateRender_loop_ImGUI();
       
          SDL_GL_SwapWindow(_winData->win);
       }
@@ -114,7 +114,7 @@ namespace DI{
          ImGui_ImplSDL2_NewFrame();
          ImGui::NewFrame();
          ImGui::SetNextWindowPos( ImVec2(0,0) );
-         ImGui::SetNextWindowSize( ImVec2(_winData->size.x * 0.2,_winData->size.y * 0.2) );
+         ImGui::SetNextWindowSize( ImVec2(_winData->size.x * 0.2,_winData->size.y ) );
          ImGuiWindowFlags flags = (ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
          
          
@@ -123,7 +123,15 @@ namespace DI{
          ImGui::Text("Win size:  %g %g",_winData->size.x,_winData->size.y);
          ImGui::Text("Mouse pos: %g %g",_appData->mousePos.x,_appData->mousePos.y);
          ImGui::Text("Time since start: %g",CoreTime::time_since_start_programm);
-         
+         ImGui::Text("Direction Light");
+         ImGui::SliderFloat("x",&_imguiData->slot0,-100.0f,100.0f);
+         ImGui::SliderFloat("y",&_imguiData->slot1,-100.0f,100.0f);
+         ImGui::SliderFloat("z",&_imguiData->slot2,-100.0f,100.0f);
+         ImGui::Text("Point Light");
+         ImGui::SliderFloat("x1",&_imguiData->slot3,-100.0f,100.0f);
+         ImGui::SliderFloat("y1",&_imguiData->slot4,-100.0f,100.0f);
+         ImGui::SliderFloat("z1",&_imguiData->slot5,-100.0f,100.0f);
+
 
          ImGui::End();
 

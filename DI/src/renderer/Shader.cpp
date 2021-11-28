@@ -1,10 +1,10 @@
-#include "Core.hpp"
 #include "Shader.hpp"
 #include "Buffer.hpp"
 
-
 namespace DI{
 void ShaderHandler::Set(Shader& shader, const std::string& vertex_name, const std::string& fragment_name){
+   // Maybe use in other place
+   DI::LayoutHandler::Set(vertex_name);
    // Get source of shader files
    std::string vertex_src = ShaderHandler::Parse(vertex_name);
    std::string fragment_src = ShaderHandler::Parse(fragment_name);
@@ -30,7 +30,8 @@ std::string ShaderHandler::Parse(const std::string& name){
    std::string fileContent{""};
    file.open(name);
    if (!file.is_open()){
-       std::cout << "Failed opening file " << name << std::endl;
+      fileContent = "not_loaded";
+      std::cout << "Failed opening file " << name << std::endl;
    }
    else{
        std::string buffer;
