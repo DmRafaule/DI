@@ -5,11 +5,12 @@ project(GameEngine)
 add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SDL2 ${CMAKE_SOURCE_DIR}/DI/dep/SDL2/build )
 add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/GLEW ${CMAKE_SOURCE_DIR}/DI/dep/GLEW )
 add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG/build )
+add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP/build )
 
 # Create Engine libs
 add_subdirectory(${CMAKE_SOURCE_DIR}/DI ${CMAKE_SOURCE_DIR}/DI/lib)
 # Move needed files
-file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/lib*.[a,so,dll,lib]*) # Add all neede submodules in project
+file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/lib*.[a,so,dll,lib]*) # Add all needed submodules in project
 file(
    GLOB 
       INCLUDE_EXTERNAL 
@@ -18,6 +19,8 @@ file(
          ${CMAKE_SOURCE_DIR}/DI/dep/SDL2/include/*
          ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG/include/*
          ${CMAKE_SOURCE_DIR}/DI/dep/STB/include/*
+         ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP/include/assimp
+         ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP/build/include/assimp
 )
 file(
    GLOB 

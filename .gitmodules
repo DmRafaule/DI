@@ -13,3 +13,6 @@
 [submodule "DI/dep/IMGUI"]
 	path = DI/dep/IMGUI
 	url = https://github.com/ocornut/imgui.git
+[submodule "DI/dep/ASSIMP"]
+	path = DI/dep/ASSIMP
+	url = https://github.com/assimp/assimp.git
