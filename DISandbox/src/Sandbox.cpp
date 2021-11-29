@@ -106,7 +106,7 @@ public:
             7,5,6,
         }; 
         DI::MeshHandler::Set(*m2);
-        DI::ShaderHandler::Set(*sh2,"res/shaders/dirLight.vert","res/shaders/dirLight.frag");
+        DI::ShaderHandler::Set(*sh2,"res/shaders/PhongLight_dir.vert","res/shaders/PhongLight_dir.frag");
 
         // Cube affected to point lighting
         sh3 = C_Ref<DI::Shader>();
@@ -172,7 +172,7 @@ public:
             7,5,6,
         };
         DI::MeshHandler::Set(*m3);
-        DI::ShaderHandler::Set(*sh3,"res/shaders/pointLight.vert","res/shaders/pointLight.frag");
+        DI::ShaderHandler::Set(*sh3,"res/shaders/PhongLight_point.vert","res/shaders/PhongLight_point.frag");
 
         // Cube affected to spot light
         m4 = C_Ref<DI::Mesh>();
@@ -238,7 +238,7 @@ public:
             7,5,6,
         };
         DI::MeshHandler::Set(*m4);
-        DI::ShaderHandler::Set(*sh4,"res/shaders/spotLight.vert","res/shaders/spotLight.frag");
+        DI::ShaderHandler::Set(*sh4,"res/shaders/PhongLight_spot.vert","res/shaders/PhongLight_spot.frag");
 
         // Cube affected to direction point and spot light light
         m5 = C_Ref<DI::Mesh>();
@@ -316,7 +316,6 @@ public:
     }
     void updateRender_loop(){
         DI::ViewHandler::Use(*view1);
-
         // Draw geometry with flat material
         m1->model_matrix = glm::mat4(1.0f);
         DI::MeshHandler::Translate(*m1,glm::vec3(10.0f,0.0f,0.0f));
