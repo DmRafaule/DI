@@ -30,14 +30,22 @@ namespace DI{
 		Ref<Mesh> m(new Mesh());
 
 	   	//process vertecies data(pos, colors, normals, texcoord)
-	   	m->verticies.count = mesh->mNumVertices * 3;
+	   	m->verticies.count = mesh->mNumVertices * 8;
 	   	m->verticies.data = new float[m->verticies.count];
 	   	int counter = 0;
 	   	for(unsigned int i = 0; i < mesh->mNumVertices; i++){
 	   		static_cast<float*>(m->verticies.data)[counter]   = mesh->mVertices[i].x;
 	      	static_cast<float*>(m->verticies.data)[counter+1] = mesh->mVertices[i].y;
 	      	static_cast<float*>(m->verticies.data)[counter+2] = mesh->mVertices[i].z;
-	      	counter += 3;
+	      	static_cast<float*>(m->verticies.data)[counter+3] = mesh->mNormals[i].x;
+	      	static_cast<float*>(m->verticies.data)[counter+4] = mesh->mNormals[i].y;
+	      	static_cast<float*>(m->verticies.data)[counter+5] = mesh->mNormals[i].z;
+
+	      	if (mesh->mTextureCoords[0]){
+	      	   	static_cast<float*>(m->verticies.data)[counter+6] = mesh->mTextureCoords[0][i].x;
+	      	   	static_cast<float*>(m->verticies.data)[counter+7] = mesh->mTextureCoords[0][i].y;
+	        }
+	      	counter += 8;
 	   	}
 	   	counter = 0;
 
@@ -58,13 +66,13 @@ namespace DI{
    		counter = 0;
 
    		for (unsigned int i = 0; i < scene->mNumMaterials; i++){
-   			DI_LOG_INFO("Meterial");
+   			
    		}
    		for (unsigned int i = 0; i < scene->mNumLights; i++){
-   			DI_LOG_INFO("Lights");
+   			
    		}
    		for (unsigned int i = 0; i < scene->mNumCameras; i++){
-   			DI_LOG_INFO("Cameras");
+   			
    		}
 
 	   	return m;

@@ -11,9 +11,9 @@ public:
         DI::ModelHandler::Load(*model,"res/models/snowSquare.obj");
         for (auto mesh : model->meshes){
             DI::MeshHandler::Set(*mesh);
-            DI::LayoutHandler::Set("res/shaders/flatColor.vert");
+            DI::LayoutHandler::Set("res/shaders/Phong_dirLight(without_color).vert");
         }
-        DI::ShaderHandler::Set(*sh1,"res/shaders/flatColor.vert","res/shaders/flatColor.frag");
+        DI::ShaderHandler::Set(*sh1,"res/shaders/Phong_dirLight(without_color).vert","res/shaders/Phong_dirLight(without_color).frag");
 
 
 
@@ -33,10 +33,18 @@ public:
         // Draw geometry with flat material
         for (auto mesh : model->meshes){
             mesh->model_matrix = glm::mat4(1.0f);
-            DI::MeshHandler::Translate(*mesh,glm::vec3(10.0f,0.0f,0.0f));
+            DI::MeshHandler::Translate(*mesh,glm::vec3(0.0f,0.0f,0.0f));
             DI::ShaderHandler::Use(*sh1);
-            DI::ShaderHandler::SetUniform(*sh1, "u_mvp",view1->proj * view1->eye * mesh->model_matrix);
+            DI::ShaderHandler::SetUniform(*sh1, "u_model",mesh->model_matrix);
+            DI::ShaderHandler::SetUniform(*sh1, "u_proj",view1->proj);
+            DI::ShaderHandler::SetUniform(*sh1, "u_view",view1->eye);
             DI::ShaderHandler::SetUniform(*sh1, "u_time",(float)DI::CoreTime::time_since_start_programm);
+            DI::ShaderHandler::SetUniform(*sh1, "viewPos",view1->pos.x,view1->pos.y,view1->pos.z);
+            DI::ShaderHandler::SetUniform(*sh1, "material.shininess",float(0.7 * 128));
+            DI::ShaderHandler::SetUniform(*sh1, "light.ambient",0.3f, 0.3f, 0.3f);
+            DI::ShaderHandler::SetUniform(*sh1, "light.diffuse",0.5f, 0.5f, 0.5f);
+            DI::ShaderHandler::SetUniform(*sh1, "light.specular",1.0f, 1.0f, 1.0f);
+            DI::ShaderHandler::SetUniform(*sh1, "light.direction",_imguiData->slot0, _imguiData->slot1, _imguiData->slot2);
             DI::RenderHandler::DrawElements(*mesh);
         }
 
