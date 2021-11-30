@@ -16,3 +16,4 @@ For now engine contain and consits from:
    * Support uniforms
    * Camera support(without rolling)
    * Mem managment(not realy good)
+   * Model loading(prebuild, for now only positions and elements)

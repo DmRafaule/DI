@@ -3,8 +3,6 @@
 
 namespace DI{
 void ShaderHandler::Set(Shader& shader, const std::string& vertex_name, const std::string& fragment_name){
-   // Maybe use in other place
-   DI::LayoutHandler::Set(vertex_name);
    // Get source of shader files
    std::string vertex_src = ShaderHandler::Parse(vertex_name);
    std::string fragment_src = ShaderHandler::Parse(fragment_name);

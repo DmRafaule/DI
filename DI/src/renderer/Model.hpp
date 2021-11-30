@@ -7,12 +7,18 @@
 
 namespace DI{
 
-   struct Model{
+   struct Mesh;
 
+   struct Model{
+      std::vector<Ref<Mesh>>  meshes;
    };
 
    class ModelHandler{
-
+   public:
+      static void Load(Model& model,std::string path);
+   private:
+      static void processNode(Model& model, aiNode *node, const aiScene *scene);
+      static Ref<Mesh> processMesh(aiMesh *mesh, const aiScene *scene);
    };
 
 } // namespace DI
