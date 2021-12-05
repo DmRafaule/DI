@@ -4,6 +4,8 @@
 
 
 namespace DI{
+   struct Texture;
+   struct Shader;
    // Contain layout data
    struct Layout{
       unsigned int  index;

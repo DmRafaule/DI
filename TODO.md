@@ -4,4 +4,4 @@ TODO list
 Entity system
 Scenes system
 Layers system
-Lighting shaders support
+Reimplement textures one struct one texture

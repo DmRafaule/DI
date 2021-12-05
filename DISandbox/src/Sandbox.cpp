@@ -5,20 +5,23 @@ class Sandbox : public DI::App{
 public:   
     Sandbox(){
 
-        // Cube with flat color
         sh1 = C_Ref<DI::Shader>();
-        model = C_Ref<DI::Model>();
-        DI::ModelHandler::Load(*model,"res/models/snowSquare.obj");
-        for (auto mesh : model->meshes){
-            DI::MeshHandler::Set(*mesh);
-            DI::LayoutHandler::Set("res/shaders/Phong_dirLight(without_color).vert");
-        }
         DI::ShaderHandler::Set(*sh1,"res/shaders/Phong_dirLight(without_color).vert","res/shaders/Phong_dirLight(without_color).frag");
+        
+        model = C_Ref<DI::Model>();
+        DI::ModelHandler::Load(*model,"res/models/3cubes.obj");
+        for (int i = 0; i < model->meshes.size(); ++i){
+            DI::MeshHandler::Set(*model->meshes[i]);
+            DI::LayoutHandler::Set("res/shaders/Phong_dirLight(without_color).vert");
+            DI::MaterialHandler::SetShader(*model->materials[i],*sh1);
+        }
 
 
-
-
-
+        for (auto& m : model->materials){
+            for (auto& s : m->uniforms)
+                std::cout << &s.second.first << std::endl;
+            std::cout << std::endl;
+        }
         view1 = C_Ref<DI::View>();
         DI::ViewHandler::SetDefault(*view1,_winData->size);
     }
@@ -31,11 +34,13 @@ public:
         DI::ViewHandler::Use(*view1);
 
         // Draw geometry with flat material
-        for (auto mesh : model->meshes){
-            mesh->model_matrix = glm::mat4(1.0f);
-            DI::MeshHandler::Translate(*mesh,glm::vec3(0.0f,0.0f,0.0f));
+        for (int i = 0; i < model->meshes.size(); ++i){
+            model->meshes[i]->model_matrix = glm::mat4(1.0f);
+            DI::MeshHandler::Translate(*model->meshes[i],glm::vec3(0.0f,0.0f,0.0f));
             DI::ShaderHandler::Use(*sh1);
-            DI::ShaderHandler::SetUniform(*sh1, "u_model",mesh->model_matrix);
+            DI::MaterialHandler::UseMaterial(*model->materials[i],*sh1);
+            
+            DI::ShaderHandler::SetUniform(*sh1, "u_model",model->meshes[i]->model_matrix);
             DI::ShaderHandler::SetUniform(*sh1, "u_proj",view1->proj);
             DI::ShaderHandler::SetUniform(*sh1, "u_view",view1->eye);
             DI::ShaderHandler::SetUniform(*sh1, "u_time",(float)DI::CoreTime::time_since_start_programm);
@@ -45,7 +50,8 @@ public:
             DI::ShaderHandler::SetUniform(*sh1, "light.diffuse",0.5f, 0.5f, 0.5f);
             DI::ShaderHandler::SetUniform(*sh1, "light.specular",1.0f, 1.0f, 1.0f);
             DI::ShaderHandler::SetUniform(*sh1, "light.direction",_imguiData->slot0, _imguiData->slot1, _imguiData->slot2);
-            DI::RenderHandler::DrawElements(*mesh);
+            
+            DI::RenderHandler::DrawElements(*model->meshes[i]);
         }
 
     }

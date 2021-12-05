@@ -20,7 +20,6 @@ struct Material{
    sampler2D specular;
    float shininess;
 };
-uniform Material material;
 
 /*It is directional light*/
 
@@ -33,15 +32,16 @@ struct Light {
    vec3 specular;
 };
 uniform Light light;
+uniform Material material;
 
 void main(){
    vec3 lightDir = normalize(-light.direction); 
    // Set up ambient
-   vec3 ambient = light.ambient * vColor;
+   vec3 ambient = light.ambient * vec3(texture(material.diffuse,vTex));
    // Set up diffuse
    vec3 norm = normalize(vNormal);
    float diff = max(dot(norm, lightDir), 0.0);
-   vec3 diffuse = light.diffuse * diff * vColor;
+   vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse,vTex));
    // Set up specular
    vec3 viewDir = normalize(viewPos - vFragPos);
    vec3 reflectDir = reflect(-lightDir,norm);

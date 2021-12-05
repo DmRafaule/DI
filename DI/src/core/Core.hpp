@@ -12,6 +12,8 @@
 #include <set>
 #include <deque>
 #include <stack>
+#include <unordered_map>
+#include <unordered_set>
 
 #include <memory>
 #include <sstream>

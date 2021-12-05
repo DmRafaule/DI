@@ -1,6 +1,6 @@
 #include "Buffer.hpp"
 #include "Shader.hpp"
-
+#include "Texture.hpp"
 
 namespace DI {
 
