@@ -7,6 +7,7 @@ namespace DI{
 enum UniformType : unsigned int{
    FL,
    IN,
+   SAMPLER2D,
    UIN,
    DOB,
    B,
@@ -33,7 +34,7 @@ struct Shader{
 class ShaderHandler{
 public:
    static void Set(Shader &shader, const std::string& vertex_path, const std::string& fragment_path);
-   static void Use(Shader &shader);
+   static void Use(const Shader &shader);
    static std::string Parse(const std::string& name);
    static std::string GetType(const UniformType type);
 

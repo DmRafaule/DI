@@ -1,5 +1,4 @@
 #include "Shader.hpp"
-#include "Buffer.hpp"
 
 namespace DI{
    
@@ -24,7 +23,7 @@ void ShaderHandler::Set(Shader& shader, const std::string& vertex_name, const st
    glDeleteShader(fs);
 }
 
-void ShaderHandler::Use(Shader& shader){
+void ShaderHandler::Use(const Shader& shader){
    glUseProgram(shader.id);
 }
 std::string ShaderHandler::Parse(const std::string& name){
@@ -74,8 +73,10 @@ void ShaderHandler::setNewUniform(Shader& shader, const int u_count, std::string
       case 1:{
          if (type_compare == "float")
             u_type = UniformType::FL;
-         else if (type_compare == "int" || type_compare == "sampler2D")
+         else if (type_compare == "int")
             u_type = UniformType::IN;
+         else if (type_compare == "sampler2D")
+            u_type = UniformType::SAMPLER2D;
          else if (type_compare == "uint")
             u_type = UniformType::UIN;
          else if (type_compare == "double")

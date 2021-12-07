@@ -1,7 +1,8 @@
 #include "Model.hpp"
-#include "Buffer.hpp"
+#include "Mesh.hpp"
 #include "Texture.hpp"
 #include "Material.hpp"
+#include "Renderer.hpp"
 
 
 namespace DI{
@@ -16,6 +17,12 @@ namespace DI{
       		DI_LOG_INFO("Loaded model, success.");
       	
     	processNode(model, scene->mRootNode, scene);
+    }
+    void ModelHandler::Use(Model& model, Shader& shader){
+    	for (int i = 0; i < model.meshes.size(); ++i){
+            DI::MaterialHandler::UseMaterial(*model.materials[i],shader);            
+            DI::RenderHandler::DrawElements(*model.meshes[i]);
+        }
     }
     void ModelHandler::processNode(Model& model, aiNode *node, const aiScene *scene){
     	

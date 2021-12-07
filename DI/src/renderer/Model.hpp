@@ -10,6 +10,7 @@ namespace DI{
    struct Mesh;
    struct Texture;
    struct Material;
+   struct Shader;
 
    struct Model{
       std::vector<Ref<Mesh>> meshes;
@@ -19,6 +20,7 @@ namespace DI{
    class ModelHandler{
    public:
       static void Load(Model& model,std::string path);
+      static void Use(Model& model, Shader& shader);
    private:
       static void processNode(Model& model, aiNode *node, const aiScene *scene);
       static Ref<Mesh> processMesh(Model& model, aiMesh *mesh, const aiScene *scene);

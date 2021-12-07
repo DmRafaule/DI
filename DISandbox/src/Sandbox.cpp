@@ -4,6 +4,9 @@
 class Sandbox : public DI::App{
 public:   
     Sandbox(){
+        view1 = C_Ref<DI::View>();
+        DI::ViewHandler::SetDefault(*view1,_winData->size);
+
 
         sh1 = C_Ref<DI::Shader>();
         DI::ShaderHandler::Set(*sh1,"res/shaders/Phong_dirLight(without_color).vert","res/shaders/Phong_dirLight(without_color).frag");
@@ -14,10 +17,22 @@ public:
             DI::MeshHandler::Set(*model->meshes[i]);
             DI::LayoutHandler::Set("res/shaders/Phong_dirLight(without_color).vert");
             DI::MaterialHandler::SetShader(*model->materials[i],*sh1);
+            // This data must be assigned when read model(most of them)
+            model->materials[i]->uniforms["u_model"].first = &model->meshes[i]->model_matrix;
+            model->materials[i]->uniforms["u_proj"].first  = &view1->proj;
+            model->materials[i]->uniforms["u_view"].first  = &view1->eye;
+            model->materials[i]->uniforms["u_time"].first  = &DI::CoreTime::time_since_start_programm;
+            model->materials[i]->uniforms["viewPos"].first = &view1->pos;
+            
+            model->materials[i]->uniforms["material.shininess"].first = new float(0.7 * 128);
+            model->materials[i]->uniforms["light.ambient"].first = new glm::vec3(0.3f, 0.3f, 0.3f);
+            model->materials[i]->uniforms["light.diffuse"].first = new glm::vec3(0.5f, 0.5f, 0.5f);
+            model->materials[i]->uniforms["light.specular"].first = new glm::vec3(1.0f, 1.0f, 1.0f);
+            model->materials[i]->uniforms["light.direction"].first = new glm::vec3(_imguiData->slot0, _imguiData->slot1, _imguiData->slot2);
         }
+            
+            
 
-        view1 = C_Ref<DI::View>();
-        DI::ViewHandler::SetDefault(*view1,_winData->size);
     }
     ~Sandbox(){}
 
@@ -26,28 +41,7 @@ public:
     }
     void updateRender_loop(){
         DI::ViewHandler::Use(*view1);
-
-        // Draw geometry with flat material
-        for (int i = 0; i < model->meshes.size(); ++i){
-            model->meshes[i]->model_matrix = glm::mat4(1.0f);
-            DI::MeshHandler::Translate(*model->meshes[i],glm::vec3(0.0f,0.0f,0.0f));
-            DI::ShaderHandler::Use(*sh1);//HERE figure out how to make this look better
-            *(static_cast<glm::mat4*>(model->materials[i]->uniforms["u_model"].first)) = model->meshes[i]->model_matrix;
-            *(static_cast<glm::mat4*>(model->materials[i]->uniforms["u_proj"].first)) = view1->proj;
-            *(static_cast<glm::mat4*>(model->materials[i]->uniforms["u_view"].first)) = view1->eye;
-            *(static_cast<float*>(model->materials[i]->uniforms["u_time"].first)) = (float)DI::CoreTime::time_since_start_programm;
-            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["viewPos"].first)) = view1->pos;
-            *(static_cast<float*>(model->materials[i]->uniforms["material.shininess"].first)) = (float)(0.7 * 128);
-            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.ambient"].first)) = glm::vec3(0.3f, 0.3f, 0.3f);
-            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.diffuse"].first)) = glm::vec3(0.5f, 0.5f, 0.5f);
-            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.specular"].first)) = glm::vec3(1.0f, 1.0f, 1.0f);
-            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.direction"].first)) = glm::vec3(_imguiData->slot0, _imguiData->slot1, _imguiData->slot2);
-            DI::MaterialHandler::UseMaterial(*model->materials[i],*sh1);
-            
-            
-            DI::RenderHandler::DrawElements(*model->meshes[i]);
-        }
-
+        DI::ModelHandler::Use(*model,*sh1);
     }
     void onKeyPressed(int key, bool isKey_repeat){
         switch(key){

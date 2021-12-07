@@ -1,6 +1,6 @@
 #include "Core.hpp"
 #include "Renderer.hpp"
-#include "Buffer.hpp"
+#include "Mesh.hpp"
 
 
 namespace DI{

@@ -11,8 +11,6 @@ in vec2 vTex;
 
 
 uniform float u_time;
-uniform vec2  u_resolution;
-
 uniform vec3  viewPos;
 
 struct Material{
