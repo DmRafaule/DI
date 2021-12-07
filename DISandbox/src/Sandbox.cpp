@@ -16,12 +16,6 @@ public:
             DI::MaterialHandler::SetShader(*model->materials[i],*sh1);
         }
 
-
-        for (auto& m : model->materials){
-            for (auto& s : m->uniforms)
-                std::cout << &s.second.first << std::endl;
-            std::cout << std::endl;
-        }
         view1 = C_Ref<DI::View>();
         DI::ViewHandler::SetDefault(*view1,_winData->size);
     }
@@ -37,19 +31,19 @@ public:
         for (int i = 0; i < model->meshes.size(); ++i){
             model->meshes[i]->model_matrix = glm::mat4(1.0f);
             DI::MeshHandler::Translate(*model->meshes[i],glm::vec3(0.0f,0.0f,0.0f));
-            DI::ShaderHandler::Use(*sh1);
+            DI::ShaderHandler::Use(*sh1);//HERE figure out how to make this look better
+            *(static_cast<glm::mat4*>(model->materials[i]->uniforms["u_model"].first)) = model->meshes[i]->model_matrix;
+            *(static_cast<glm::mat4*>(model->materials[i]->uniforms["u_proj"].first)) = view1->proj;
+            *(static_cast<glm::mat4*>(model->materials[i]->uniforms["u_view"].first)) = view1->eye;
+            *(static_cast<float*>(model->materials[i]->uniforms["u_time"].first)) = (float)DI::CoreTime::time_since_start_programm;
+            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["viewPos"].first)) = view1->pos;
+            *(static_cast<float*>(model->materials[i]->uniforms["material.shininess"].first)) = (float)(0.7 * 128);
+            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.ambient"].first)) = glm::vec3(0.3f, 0.3f, 0.3f);
+            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.diffuse"].first)) = glm::vec3(0.5f, 0.5f, 0.5f);
+            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.specular"].first)) = glm::vec3(1.0f, 1.0f, 1.0f);
+            *(static_cast<glm::vec3*>(model->materials[i]->uniforms["light.direction"].first)) = glm::vec3(_imguiData->slot0, _imguiData->slot1, _imguiData->slot2);
             DI::MaterialHandler::UseMaterial(*model->materials[i],*sh1);
             
-            DI::ShaderHandler::SetUniform(*sh1, "u_model",model->meshes[i]->model_matrix);
-            DI::ShaderHandler::SetUniform(*sh1, "u_proj",view1->proj);
-            DI::ShaderHandler::SetUniform(*sh1, "u_view",view1->eye);
-            DI::ShaderHandler::SetUniform(*sh1, "u_time",(float)DI::CoreTime::time_since_start_programm);
-            DI::ShaderHandler::SetUniform(*sh1, "viewPos",view1->pos.x,view1->pos.y,view1->pos.z);
-            DI::ShaderHandler::SetUniform(*sh1, "material.shininess",float(0.7 * 128));
-            DI::ShaderHandler::SetUniform(*sh1, "light.ambient",0.3f, 0.3f, 0.3f);
-            DI::ShaderHandler::SetUniform(*sh1, "light.diffuse",0.5f, 0.5f, 0.5f);
-            DI::ShaderHandler::SetUniform(*sh1, "light.specular",1.0f, 1.0f, 1.0f);
-            DI::ShaderHandler::SetUniform(*sh1, "light.direction",_imguiData->slot0, _imguiData->slot1, _imguiData->slot2);
             
             DI::RenderHandler::DrawElements(*model->meshes[i]);
         }
