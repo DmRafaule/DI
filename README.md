@@ -12,8 +12,7 @@ For now engine contain and consits from:
    * Event system  (Uppon SDL events)
    * Loging system (App logs and DI logs) + opengl debug
    * Core Timer
-   * Attribute handler 
-   * Support uniforms
+   * Simple material system(Attribute handler, Support uniforms)
    * Camera support(without rolling)
    * Mem managment(not realy good)
-   * Model loading(prebuild, for now only positions and elements)
+   * Model loading(prebuild, support elements, vertecies, normals, colors,textures(diffuse,specular))
