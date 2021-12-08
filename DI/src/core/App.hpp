@@ -20,6 +20,9 @@ namespace DI{
       float slot6;
       float slot7;
       float slot8;
+      glm::vec3 vslot1;
+      glm::vec3 vslot2;
+      glm::vec3 vslot3;
    };
 
    class App{

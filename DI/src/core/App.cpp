@@ -124,13 +124,13 @@ namespace DI{
          ImGui::Text("Mouse pos: %g %g",_appData->mousePos.x,_appData->mousePos.y);
          ImGui::Text("Time since start: %g",CoreTime::time_since_start_programm);
          ImGui::Text("Direction Light");
-         ImGui::SliderFloat("x",&_imguiData->slot0,-100.0f,100.0f);
-         ImGui::SliderFloat("y",&_imguiData->slot1,-100.0f,100.0f);
-         ImGui::SliderFloat("z",&_imguiData->slot2,-100.0f,100.0f);
+         ImGui::SliderFloat("x",&_imguiData->vslot1.x,-100.0f,100.0f);
+         ImGui::SliderFloat("y",&_imguiData->vslot1.y,-100.0f,100.0f);
+         ImGui::SliderFloat("z",&_imguiData->vslot1.z,-100.0f,100.0f);
          ImGui::Text("Point Light");
-         ImGui::SliderFloat("x1",&_imguiData->slot3,-100.0f,100.0f);
-         ImGui::SliderFloat("y1",&_imguiData->slot4,-100.0f,100.0f);
-         ImGui::SliderFloat("z1",&_imguiData->slot5,-100.0f,100.0f);
+         ImGui::SliderFloat("x1",&_imguiData->vslot2.x,-100.0f,100.0f);
+         ImGui::SliderFloat("y1",&_imguiData->vslot2.y,-100.0f,100.0f);
+         ImGui::SliderFloat("z1",&_imguiData->vslot2.z,-100.0f,100.0f);
 
 
          ImGui::End();

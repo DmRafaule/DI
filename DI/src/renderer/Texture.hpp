@@ -7,7 +7,7 @@
 struct Shader;
 
 namespace DI{
-
+// Texture data (sampler not supposed to be here)
 struct Texture{
    std::string sampler;
    std::string path;
@@ -26,7 +26,7 @@ struct Texture{
    int chanels;
 
 };
-
+// Control texture data
 class TextureHandler{
 public:
    static void Set(Texture &texture, const std::string path);

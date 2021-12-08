@@ -12,17 +12,24 @@ namespace DI{
    		const aiScene *scene = importer.ReadFile(path,aiProcess_Triangulate | aiProcess_FlipUVs);
 
    		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-      		DI_LOG_ERROR("ERROR::ASSIMP::{0}",importer.GetErrorString());
+      		DI_LOG_ERROR("ModelHandler say: {0}",importer.GetErrorString());
       	else
-      		DI_LOG_INFO("Loaded model, success.");
+      		DI_LOG_INFO("ModelHandler say: Loaded model, success.");
       	
     	processNode(model, scene->mRootNode, scene);
     }
-    void ModelHandler::Use(Model& model, Shader& shader){
+    void ModelHandler::Scale(Model &model, const glm::vec3 offset){
     	for (int i = 0; i < model.meshes.size(); ++i){
-            DI::MaterialHandler::UseMaterial(*model.materials[i],shader);            
-            DI::RenderHandler::DrawElements(*model.meshes[i]);
-        }
+    		MeshHandler::Scale(*model.meshes[i],offset);
+    	}
+    }
+    void ModelHandler::Translate(Model &model, const glm::vec3 offset){
+    	for (int i = 0; i < model.meshes.size(); ++i){
+    		MeshHandler::Translate(*model.meshes[i],offset);
+    	}
+    }
+    void ModelHandler::Rotate(Model &model,const float angle, const glm::vec3 offset){
+
     }
     void ModelHandler::processNode(Model& model, aiNode *node, const aiScene *scene){
     	
@@ -48,6 +55,12 @@ namespace DI{
 	      	static_cast<float*>(m->verticies.data)[counter+1] = mesh->mVertices[i].y;
 	      	static_cast<float*>(m->verticies.data)[counter+2] = mesh->mVertices[i].z;
 	      	counter += 3;
+	      	if (mesh->HasVertexColors(i)){
+	      		static_cast<float*>(m->verticies.data)[counter] = mesh->mColors[i]->r;
+	      	   static_cast<float*>(m->verticies.data)[counter+1] = mesh->mColors[i]->g;
+	      	   static_cast<float*>(m->verticies.data)[counter+2] = mesh->mColors[i]->b;
+	      		counter += 3;
+	      	}
 	      	if (mesh->HasNormals()){//*.x3d have not normals
 	      	   	static_cast<float*>(m->verticies.data)[counter] = mesh->mNormals[i].x;
 	      	   	static_cast<float*>(m->verticies.data)[counter+1] = mesh->mNormals[i].y;
@@ -85,24 +98,24 @@ namespace DI{
     	std::vector<Texture> textures;
     	
     	// proccess textures
-   		if (mesh->mMaterialIndex >= 0){	// If mesh have materials
-   			aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];// Get material for mesh
+   	if (mesh->mMaterialIndex >= 0){	// If mesh have materials
+   		aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];// Get material for mesh
 
-   			// 1. diffuse maps
-    		std::vector<Texture> diffuseMaps = processMaterialTextures(material, aiTextureType_DIFFUSE, "material.diffuse");
+   		// 1. diffuse maps
+    		std::vector<Texture> diffuseMaps = processMaterialTextures(material, aiTextureType_DIFFUSE, "");
     		textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
   	  		// 2. specular maps
-  	  		std::vector<Texture> specularMaps = processMaterialTextures(material, aiTextureType_SPECULAR, "material.specular");
-   			textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
-   			// 3. normal maps
-	        std::vector<Texture> normalMaps = processMaterialTextures(material, aiTextureType_HEIGHT, "material.normal");
-	        textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
-	        // 4. height maps
-	        std::vector<Texture> heightMaps = processMaterialTextures(material, aiTextureType_AMBIENT, "material.height");
-	        textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+  	  		std::vector<Texture> specularMaps = processMaterialTextures(material, aiTextureType_SPECULAR, "");
+			textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+			// 3. normal maps
+			std::vector<Texture> normalMaps = processMaterialTextures(material, aiTextureType_HEIGHT, "");
+			textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
+			// 4. height maps
+			std::vector<Texture> heightMaps = processMaterialTextures(material, aiTextureType_AMBIENT, "");
+			textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 		}
-   		for (int i = 0; i < textures.size(); ++i)
-   			MaterialHandler::SetSampler(*m,textures[i]);
+   	for (int i = 0; i < textures.size(); ++i)
+   		MaterialHandler::SetSampler(*m,textures[i]);
 
 		return m;
     }
@@ -129,5 +142,7 @@ namespace DI{
 
 // NOTES:
 /*
-in processMaterialTextures func there is no check if texture already loaded
+ 	1)in processMaterialTextures func there is no check if texture already loaded
+	2)in processMaterial func I'm not sending samplers name and when I use this there is no name for unifomr sender
+	I dont know what is a kind of magic ¯\_(ツ)_/¯ 
 */

@@ -11,7 +11,6 @@ in vec2 vTex;
 
 
 uniform float u_time;
-uniform vec2  u_resolution;
 uniform vec3  u_color;
 uniform vec3  viewPos;
 
@@ -26,16 +25,15 @@ uniform DirLight dirLight;
 struct PointLight {    
     vec3 position;
     
-    float constant;
-    float linear;
-    float quadratic;  
-
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
+
+    float constant;
+    float linear;
+    float quadratic;  
 };  
-#define NR_POINT_LIGHTS 1  
-uniform PointLight pointLights[NR_POINT_LIGHTS];
+uniform PointLight pointLights;
 struct SpotLight {
     vec3 position;
     vec3 direction;
@@ -73,8 +71,8 @@ void main(){
    // phase 1: Directional lighting
    vec3 result = CalcDirLight(dirLight, norm, viewDir);
    // phase 2: Point lights
-   for(int i = 0; i < NR_POINT_LIGHTS; i++)
-       result += CalcPointLight(pointLights[i], norm, vFragPos, viewDir);    
+   //for(int i = 0; i < 1; i++)
+       result += CalcPointLight(pointLights, norm, vFragPos, viewDir);    
    // phase 3: Spot light
    result += CalcSpotLight(spotLight, norm, vFragPos, viewDir);    
    

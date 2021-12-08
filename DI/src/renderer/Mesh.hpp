@@ -8,18 +8,18 @@ namespace DI {
       void         *data;
       unsigned int  count;
    };
-   // Contain element data
-   struct Element{// Indices
+   // Contain element data(Indices)
+   struct Element{
       void         *data;
       unsigned int  count;
    };
-   // Contain buffers till now this ones
+   // Contain buffers (till now this ones)
    struct Buffer{
       unsigned int ebo;
       unsigned int vao;
       unsigned int vbo;
    };
-   // Containg data about meshes
+   // Containg data about meshe
    struct Mesh{
       Buffer       buffer;
       Vertice      verticies;
@@ -27,12 +27,16 @@ namespace DI {
       glm::mat4    model_matrix;
    };
   
-   // Set up mesh
+   // Control mesh data
    class MeshHandler{
    public:
+      // Filed up mesh data
       static void Set(Mesh &mesh);
+      // Scale mesh
       static void Scale(Mesh &mesh, const glm::vec3 offset);
+      // Translate mesh
       static void Translate(Mesh &mesh, const glm::vec3 offset);
+      // Rotate mesh
       static void Rotate(Mesh &mesh,const float angle, const glm::vec3 offset);
    private:
       MeshHandler();

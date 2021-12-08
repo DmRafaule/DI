@@ -32,7 +32,7 @@ std::string ShaderHandler::Parse(const std::string& name){
    file.open(name);
    if (!file.is_open()){
       fileContent = "not_loaded";
-      DI_LOG_ERROR("ShaderHandler: Failed opening file {0}",name);
+      DI_LOG_ERROR("ShaderHandler say: Failed opening file {0}",name);
    }
    else{
        std::string buffer;

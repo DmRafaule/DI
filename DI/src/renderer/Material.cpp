@@ -11,6 +11,9 @@ namespace DI{
    
    void MaterialHandler::UseMaterial(Material& material, const Shader& shader){
       DI::ShaderHandler::Use(shader);
+      for (int i = 0; i < material.samplers.size(); ++i){
+         DI::TextureHandler::Use(material.samplers[i].second,shader);
+      }
       for (auto& u : material.uniforms){
          switch(u.second.second){
             case UniformType::FL:{
@@ -26,6 +29,7 @@ namespace DI{
                break;
             }
             case UniformType::SAMPLER2D:{
+               
                break;
             }
             case UniformType::UIN:{
@@ -98,9 +102,6 @@ namespace DI{
             }
          }
       }
-      for (int i = 0; i < material.samplers.size(); ++i){
-         DI::TextureHandler::Use(material.samplers[i].second,shader);
-      }
    }
    void MaterialHandler::SetSampler(Material& material, const Texture& sampler){
       material.samplers.push_back(std::pair<std::string,Texture>(sampler.sampler,sampler));
@@ -121,6 +122,7 @@ namespace DI{
                break;
             }
             case UniformType::SAMPLER2D:{
+               material.uniforms.emplace(uni.first,std::pair<void*,UniformType>(nullptr,uni.second));
                break;
             }
             case UniformType::UIN:{
