@@ -13,12 +13,18 @@ namespace DI{
       _imguiData = C_Scope<ImGUIData>();
       WinHandler::WinInit(*_winData);
       WinHandler::ImGUIInit(*_winData);
-
+      LayerHandler::Set("updateRender_loop",0,std::bind(&App::updateRender_loop,this));
+      LayerHandler::Set("updateRender_loop_ImGUI",10,std::bind(&App::updateRender_loop_ImGUI,this));
    }
    App::~App(){
+      LayerHandler::UnSet("updateRender_loop");
+      LayerHandler::UnSet("updateRender_loop_ImGUI");
       WinHandler::ImGUIKill(*_winData);
       WinHandler::WinKill(*_winData);
       DI_LOG_TRACE("Kill App");
+   }
+   void App::UseMe(){
+      printf("hllllll\n");
    }
    void App::run(){
       while(_winData->isOpen){
@@ -96,9 +102,8 @@ namespace DI{
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
          glClearColor(0.141, 0.133, 0.145, 1.0);
          
-         updateRender_loop();
 
-         updateRender_loop_ImGUI();
+         LayerHandler::Update();
       
          SDL_GL_SwapWindow(_winData->win);
       }
@@ -123,6 +128,7 @@ namespace DI{
          ImGui::Text("Win size:  %g %g",_winData->size.x,_winData->size.y);
          ImGui::Text("Mouse pos: %g %g",_appData->mousePos.x,_appData->mousePos.y);
          ImGui::Text("Time since start: %g",CoreTime::time_since_start_programm);
+         ImGui::Text("FPS: %g",1 / CoreTime::tic);
          ImGui::Text("Direction Light");
          ImGui::SliderFloat("x",&_imguiData->vslot1.x,-100.0f,100.0f);
          ImGui::SliderFloat("y",&_imguiData->vslot1.y,-100.0f,100.0f);

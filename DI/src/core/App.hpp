@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.hpp"
 #include "Win.hpp"
+#include "Layer.hpp"
 
 namespace DI{
 
@@ -31,6 +32,7 @@ namespace DI{
       virtual ~App();
       void run();
    protected:
+      void UseMe();
       // To be used in client side of app
       virtual void updateEvents_loop(SDL_Event& event){};
       virtual void updateRender_loop(){};

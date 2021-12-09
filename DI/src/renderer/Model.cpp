@@ -29,7 +29,9 @@ namespace DI{
     	}
     }
     void ModelHandler::Rotate(Model &model,const float angle, const glm::vec3 offset){
-
+		for (int i = 0; i < model.meshes.size(); ++i){
+    		MeshHandler::Rotate(*model.meshes[i],angle,offset);
+    	}
     }
     void ModelHandler::processNode(Model& model, aiNode *node, const aiScene *scene){
     	
