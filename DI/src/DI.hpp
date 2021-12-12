@@ -2,8 +2,6 @@
 
 /* Used only by client application*/
 #include "App.hpp"
-/* Entry point */
-#include "Entry.hpp"
 /* Mesh system*/
 #include "Mesh.hpp"
 /* Layout system*/

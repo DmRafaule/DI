@@ -5,6 +5,11 @@
 #include "imgui_impl_opengl3.h"
 
 namespace DI{
+
+   Scope<DI::AppData> _appData;
+   Scope<DI::ImGUIData> _imguiData;
+   extern Scope<DI::WinData> _winData;
+   
    App::App(){
       Log::Init();
       DI_LOG_TRACE("Init App");
@@ -13,18 +18,12 @@ namespace DI{
       _imguiData = C_Scope<ImGUIData>();
       WinHandler::WinInit(*_winData);
       WinHandler::ImGUIInit(*_winData);
-      LayerHandler::Set("updateRender_loop",0,std::bind(&App::updateRender_loop,this));
-      LayerHandler::Set("updateRender_loop_ImGUI",10,std::bind(&App::updateRender_loop_ImGUI,this));
    }
    App::~App(){
-      LayerHandler::UnSet("updateRender_loop");
-      LayerHandler::UnSet("updateRender_loop_ImGUI");
+      SceneHandler::Clear();//HERE layers are not deleted
       WinHandler::ImGUIKill(*_winData);
       WinHandler::WinKill(*_winData);
       DI_LOG_TRACE("Kill App");
-   }
-   void App::UseMe(){
-      printf("hllllll\n");
    }
    void App::run(){
       while(_winData->isOpen){
@@ -41,20 +40,28 @@ namespace DI{
                switch (Event.window.event){
                case SDL_WINDOWEVENT_RESIZED:{
                   _winData->size = glm::vec2(Event.window.data1,Event.window.data2);
-                  onWinResized(_winData->size);
+                  glViewport(_winData->pos.x,_winData->pos.y,_winData->size.x,_winData->size.y);
+                  EventsHandler::WinResized(_winData->size);
                   break;
                }
                case SDL_WINDOWEVENT_CLOSE:{
                   _winData->isOpen = false;
+                  EventsHandler::WinClosed();
                   break;
                }
                case SDL_WINDOWEVENT_TAKE_FOCUS:{
-                  onWinFocused();
+                  _winData->isMinimized = false;
+                  EventsHandler::WinFocused();
                   break;
                }
                case SDL_WINDOWEVENT_MOVED:{
                   _winData->pos = glm::vec2(Event.window.data1,Event.window.data2);
-                  onWinMoved(_winData->pos);
+                  EventsHandler::WinMoved(_winData->pos);
+                  break;
+               }
+               case SDL_WINDOWEVENT_MINIMIZED:{
+                  _winData->isMinimized = true;
+                  EventsHandler::WinMinimized();
                   break;
                }
                }
@@ -62,50 +69,53 @@ namespace DI{
             }
             case SDL_KEYUP:{
                _appData->key = Event.key.keysym.sym;
-               onKeyReleased(_appData->key);
+               EventsHandler::KeyReleased(_appData->key);
                break;
             }
             case SDL_KEYDOWN:{
                _appData->key = Event.key.keysym.sym; 
                _appData->isKey_repeat = Event.key.repeat; 
-               onKeyPressed(_appData->key, _appData->isKey_repeat);
+               EventsHandler::KeyPressed(_appData->key, _appData->isKey_repeat);
                break;
             }
             case SDL_MOUSEMOTION:{
                _appData->mousePos = glm::vec2(Event.motion.x,Event.motion.y);
-               onMouseMoved(_appData->mousePos);
+               EventsHandler::MouseMoved(_appData->mousePos);
                break;
             }
             case SDL_MOUSEWHEEL:{
                _appData->mouseWheelOffset = glm::vec2(Event.wheel.x,Event.wheel.y);
-               onMouseScrolled(_appData->mouseWheelOffset);
+               EventsHandler::MouseScrolled(_appData->mouseWheelOffset);
                break;
             }
             case SDL_MOUSEBUTTONDOWN:{
                _appData->key = Event.key.keysym.sym;
-               onMousePressed(Event.key.keysym.sym,0);
+               EventsHandler::MousePressed(Event.key.keysym.sym,0);
                break;
             }
             case SDL_MOUSEBUTTONUP:{
                _appData->key = Event.key.keysym.sym;
-               onMouseReleased(_appData->key);
+               EventsHandler::MouseReleased(_appData->key);
                break;
             }
             default:{
                break;
             }
             }
-            updateEvents_loop(Event);
+            EventsHandler::CustomEvent(Event);
             updateEvents_loop_ImGUI(Event);
          }
      
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
          glClearColor(0.141, 0.133, 0.145, 1.0);
          
-
-         LayerHandler::Update();
+         if (!_winData->isMinimized){
+            SceneHandler::Update();
+         }
+         updateRender_loop_ImGUI();
       
          SDL_GL_SwapWindow(_winData->win);
+         EventsHandler::AppFrameChanged();
       }
    }
 

@@ -1,9 +1,8 @@
 #include "Layer.hpp"
 
 namespace DI{
-   std::vector<Layer> LayerHandler::layers(0);
    
-   void LayerHandler::Set(std::string l_name, const int index,std::function<void()> func){
+   void LayerHandler::Set(std::string l_name, const int index,std::function<void()> func, std::vector<Layer>& layers){
       Layer l_new;
       l_new.name  = l_name;
       l_new.index = index;
@@ -14,7 +13,7 @@ namespace DI{
          return layerB.index > layerA.index;
       });
    }
-   void LayerHandler::UnSet(std::string l_name){
+   void LayerHandler::UnSet(std::string l_name, std::vector<Layer>& layers){
       for (int i = 0; i < layers.size(); i++){
          if (layers[i].name.compare(l_name)){
             DI_LOG_INFO("LayerHandler say: UnSet {0}",layers[i].name);
@@ -22,10 +21,13 @@ namespace DI{
          }
       }
    }
-   void LayerHandler::Update(){
+   void LayerHandler::Update(std::vector<Layer>& layers){
       for (int i = 0; i < layers.size(); i++){
          layers[i].callback();
       }
+   }
+   void LayerHandler::Clear(std::vector<Layer>& layers){
+      layers.clear();
    }
 
 } // namespace DI

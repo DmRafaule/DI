@@ -6,10 +6,11 @@
 #include "imgui_impl_opengl3.h"
 
 namespace DI{
-
+    Scope<DI::WinData> _winData;
    void WinHandler::WinInit(WinData& data){
       DI_LOG_TRACE("Init Win");
       data.isImGUI = false;
+      data.isMinimized = false;
       data.isOpen  = true;
       data.pos     = glm::vec2(300,300);
       data.size    = glm::vec2(1260,786);

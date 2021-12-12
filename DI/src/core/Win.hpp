@@ -15,6 +15,7 @@ namespace DI{
       SDL_GLContext  context;
       bool           isOpen;
       bool           isImGUI;
+      bool           isMinimized;
    };
 
    class WinHandler{
