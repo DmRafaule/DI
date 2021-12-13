@@ -58,13 +58,13 @@ struct Material{
    float shininess;
 };
 uniform Material material;
+uniform mat4 u_model;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);  
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);  
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main(){
-
    // properties
    vec3 norm = normalize(vNormal);
    vec3 viewDir = normalize(viewPos - vFragPos);

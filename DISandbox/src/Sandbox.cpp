@@ -3,11 +3,7 @@
 #include "Entry.hpp"
 
 /*Inherit engine side App class*/
-namespace DI{
-    extern Scope<DI::AppData> _appData;
-    extern Scope<DI::WinData> _winData;
-    extern Scope<DI::ImGUIData> _imguiData;
-}
+GET_GLOBAL_DATA
 Sandbox::Sandbox(){   
 
     scene1 = C_Ref<MyScene>();

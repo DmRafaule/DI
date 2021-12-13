@@ -19,12 +19,21 @@ namespace DI{
       float slot3;
       float slot4;
       float slot5;
-      float slot6;
-      float slot7;
-      float slot8;
+      float constant;
+      float linear;
+      float quadratic;
       glm::vec3 vslot1;
-      glm::vec3 vslot2;
-      glm::vec3 vslot3;
+      glm::vec3 pointPos;
+      glm::vec3 ambient;
+      glm::vec3 diffuse;
+      glm::vec3 specular;
+      glm::vec3 ambient_;
+      glm::vec3 diffuse_;
+      glm::vec3 specular_;
+      float constant_;
+      float linear_;
+      float quadratic_;
+      float shineness_;
    };
 
    class App{

@@ -7,6 +7,7 @@ namespace DI{
    // For now supporting only one window
 
    struct WinData{
+      glm::vec3      bg;
       glm::vec2      size;
       glm::vec2      pos; 
       std::string    title;

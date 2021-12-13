@@ -21,7 +21,7 @@ void ViewHandler::SetDefault(View &view, glm::vec2 &size){
    view.eye = glm::translate(view.eye,glm::vec3(0.0,0.0,-3.0));
    
    view.proj = glm::mat4(1.0f);
-   view.proj = glm::perspective(glm::radians(view.fovy),view.ratio,0.1f,100.0f);
+   view.proj = glm::perspective(glm::radians(view.fovy),view.ratio,0.1f,10000.0f);
 }
 void ViewHandler::SetCustom(View &view, const glm::vec3 pos, const glm::vec3 focus, const float spead, const float fovy, const glm::vec2 &size, const Projection type){
    view.pos     = pos;

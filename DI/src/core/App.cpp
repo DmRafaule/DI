@@ -107,7 +107,7 @@ namespace DI{
          }
      
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   
-         glClearColor(0.141, 0.133, 0.145, 1.0);
+         glClearColor(_winData->bg.r,_winData->bg.g,_winData->bg.b, 1.0f );
          
          if (!_winData->isMinimized){
             SceneHandler::Update();
@@ -134,20 +134,32 @@ namespace DI{
          
          
          ImGui::Begin("Menu", &_winData->isImGUI,flags);
+
          ImGui::Text("Win pos:   %g %g",_winData->pos.x,_winData->pos.y);
          ImGui::Text("Win size:  %g %g",_winData->size.x,_winData->size.y);
          ImGui::Text("Mouse pos: %g %g",_appData->mousePos.x,_appData->mousePos.y);
          ImGui::Text("Time since start: %g",CoreTime::time_since_start_programm);
          ImGui::Text("FPS: %g",1 / CoreTime::tic);
-         ImGui::Text("Direction Light");
-         ImGui::SliderFloat("x",&_imguiData->vslot1.x,-100.0f,100.0f);
-         ImGui::SliderFloat("y",&_imguiData->vslot1.y,-100.0f,100.0f);
-         ImGui::SliderFloat("z",&_imguiData->vslot1.z,-100.0f,100.0f);
-         ImGui::Text("Point Light");
-         ImGui::SliderFloat("x1",&_imguiData->vslot2.x,-100.0f,100.0f);
-         ImGui::SliderFloat("y1",&_imguiData->vslot2.y,-100.0f,100.0f);
-         ImGui::SliderFloat("z1",&_imguiData->vslot2.z,-100.0f,100.0f);
+         ImGui::Text("Planets");
+         ImGui::SliderFloat3("dirLight pos",glm::value_ptr(_imguiData->pointPos),-100.0f,100.0f);
+         ImGui::SliderFloat3("light pos",glm::value_ptr(_imguiData->pointPos),-100.0f,100.0f);   
+         ImGui::SliderFloat3("ambient",glm::value_ptr(_imguiData->ambient),-100.0f,100.0f);
+         ImGui::SliderFloat3("diffuse",glm::value_ptr(_imguiData->diffuse),-100.0f,100.0f);
+         ImGui::SliderFloat3("specular",glm::value_ptr(_imguiData->specular),-100.0f,100.0f);
+  
+         ImGui::InputFloat("constant",&_imguiData->constant);
+         ImGui::InputFloat("linear",&_imguiData->linear);
+         ImGui::InputFloat("quadratic",&_imguiData->quadratic);
 
+         ImGui::Text("Sol");
+         ImGui::SliderFloat3("ambient_",glm::value_ptr(_imguiData->ambient_),-100.0f,100.0f);
+         ImGui::SliderFloat3("diffuse_",glm::value_ptr(_imguiData->diffuse_),-100.0f,100.0f);
+         ImGui::SliderFloat3("specular_",glm::value_ptr(_imguiData->specular_),-100.0f,100.0f);
+  
+         ImGui::InputFloat("constant_",&_imguiData->constant_);
+         ImGui::InputFloat("linear_",&_imguiData->linear_);
+         ImGui::InputFloat("quadratic_",&_imguiData->quadratic_);
+         ImGui::InputFloat("shineness_",&_imguiData->shineness_);
 
          ImGui::End();
 

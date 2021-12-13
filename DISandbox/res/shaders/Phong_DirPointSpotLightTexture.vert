@@ -24,9 +24,9 @@ uniform mat4  u_proj;
 void main(){
    vColor = vec3(0.5,0.5,0.8);
    vTex   = aTex;
-   //vNormal = mat3(u_model) * aNormal;
+   vNormal = mat3(u_model) * aNormal;
    // Convert vectors to perpendiculars when primitives was scaled
-   vNormal = mat3(transpose(inverse(u_model))) * aNormal;  
+   //vNormal = mat3(transpose(inverse(u_model))) * aNormal;  
    // Convert fragments coord to world space
    vFragPos = vec3(u_model * vec4(aPos,1.0));
    

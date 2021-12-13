@@ -9,6 +9,9 @@ namespace DI{
    
 	void ModelHandler::Load(Model& model,std::string path){
    		Assimp::Importer importer;
+
+   		model.path = processPath(path);
+   		
    		const aiScene *scene = importer.ReadFile(path,aiProcess_Triangulate | aiProcess_FlipUVs);
 
    		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
@@ -25,13 +28,18 @@ namespace DI{
     }
     void ModelHandler::Translate(Model &model, const glm::vec3 offset){
     	for (int i = 0; i < model.meshes.size(); ++i){
-    		MeshHandler::Translate(*model.meshes[i],offset);
+            model.meshes[i]->model_matrix = glm::mat4(1.0f);
+            MeshHandler::Translate(*model.meshes[i],offset);
     	}
     }
     void ModelHandler::Rotate(Model &model,const float angle, const glm::vec3 offset){
 		for (int i = 0; i < model.meshes.size(); ++i){
     		MeshHandler::Rotate(*model.meshes[i],angle,offset);
     	}
+    }
+    std::string ModelHandler::processPath(std::string path){
+    	int end = path.rfind("/");
+    	return path.substr(0,end) + "/";
     }
     void ModelHandler::processNode(Model& model, aiNode *node, const aiScene *scene){
     	
@@ -100,29 +108,29 @@ namespace DI{
     	std::vector<Texture> textures;
     	
     	// proccess textures
-   	if (mesh->mMaterialIndex >= 0){	// If mesh have materials
-   		aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];// Get material for mesh
+   		if (mesh->mMaterialIndex >= 0){	// If mesh have materials
+   			aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];// Get material for mesh
 
-   		// 1. diffuse maps
-    		std::vector<Texture> diffuseMaps = processMaterialTextures(material, aiTextureType_DIFFUSE, "");
+   			// 1. diffuse maps
+    		std::vector<Texture> diffuseMaps = processMaterialTextures(material, aiTextureType_DIFFUSE, model.path);
     		textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
   	  		// 2. specular maps
-  	  		std::vector<Texture> specularMaps = processMaterialTextures(material, aiTextureType_SPECULAR, "");
+  	  		std::vector<Texture> specularMaps = processMaterialTextures(material, aiTextureType_SPECULAR, model.path);
 			textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 			// 3. normal maps
-			std::vector<Texture> normalMaps = processMaterialTextures(material, aiTextureType_HEIGHT, "");
+			std::vector<Texture> normalMaps = processMaterialTextures(material, aiTextureType_HEIGHT, model.path);
 			textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 			// 4. height maps
-			std::vector<Texture> heightMaps = processMaterialTextures(material, aiTextureType_AMBIENT, "");
+			std::vector<Texture> heightMaps = processMaterialTextures(material, aiTextureType_AMBIENT, model.path);
 			textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 		}
-   	for (int i = 0; i < textures.size(); ++i)
-   		MaterialHandler::SetSampler(*m,textures[i]);
+   		for (int i = 0; i < textures.size(); ++i)
+   			MaterialHandler::SetSampler(*m,textures[i]);
 
 		return m;
     }
 
-  	std::vector<Texture> ModelHandler::processMaterialTextures(aiMaterial *mat, aiTextureType type, std::string sampler){
+  	std::vector<Texture> ModelHandler::processMaterialTextures(aiMaterial *mat, aiTextureType type, std::string path){
 	    // For now this function assume that all textures used by model in the same directory
 	    std::vector<Texture> tx;
 	    for(unsigned int i = 0; i < mat->GetTextureCount(type); i++){
@@ -131,10 +139,10 @@ namespace DI{
 	    	// Add check on already loaded textures
 	        Texture tx_tmp;
 	        std::string filep = std::string(str.C_Str());
-	        filep = "res/models/" + filep;
+	        filep = path + filep;
 	        DI::TextureHandler::Set(tx_tmp,filep);
 	        tx_tmp.path = filep;
-	        tx_tmp.sampler = sampler;
+	        tx_tmp.sampler = "";
 	        tx.push_back(tx_tmp);
 	    }
 	    return tx;

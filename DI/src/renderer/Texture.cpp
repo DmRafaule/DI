@@ -35,7 +35,7 @@ void TextureHandler::Set(Texture &texture, std::string path){
         stbi_image_free(texture.data);
     }
     else{
-        DI_LOG_ERROR("STB CALLBACK: fail to load image.");
+        DI_LOG_ERROR("STB CALLBACK: fail to load image. Path:{0}",texture.path);
     }
 }
 void TextureHandler::SetFilters(Texture &texture,unsigned int wrap_s, unsigned int wrap_t, unsigned int min_filt, unsigned int mag_filt){

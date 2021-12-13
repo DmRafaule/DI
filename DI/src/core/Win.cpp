@@ -9,6 +9,7 @@ namespace DI{
     Scope<DI::WinData> _winData;
    void WinHandler::WinInit(WinData& data){
       DI_LOG_TRACE("Init Win");
+      data.bg = glm::vec3(41.f/255.f,46.f/255.f,54.f/255.f);
       data.isImGUI = false;
       data.isMinimized = false;
       data.isOpen  = true;
