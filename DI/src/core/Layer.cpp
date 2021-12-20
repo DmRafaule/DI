@@ -7,7 +7,7 @@ namespace DI{
       l_new.name  = l_name;
       l_new.index = index;
       l_new.callback  = func;
-      DI_LOG_INFO("LayerHandler say: Set layer {0} ",l_name);
+      DI_LOG_TRACE("LayerHandler say: Set layer {0} ",l_name);
       layers.push_back(l_new);
       std::sort(layers.begin(),layers.end(),[&](const Layer &layerA, const Layer &layerB){
          return layerB.index > layerA.index;

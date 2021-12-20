@@ -4,8 +4,10 @@
 namespace DI{
 
 Scene::Scene(){
+   DI_LOG_TRACE("SceneHandler say: init scene");
 }
 Scene::~Scene(){
+   DI_LOG_TRACE("SceneHandler say: remove scene");
 }
 
 
