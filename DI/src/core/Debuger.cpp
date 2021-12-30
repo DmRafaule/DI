@@ -6,10 +6,12 @@
 void ErrorCallback( unsigned int source, unsigned int type, unsigned int id, unsigned int severity, int length, const char* message, const void* userParam ){
     std::stringstream ss;
     ss << "GL CALLBACK: " << ( type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : "" ) << " type = 0x" << type << ", severity = 0x" << severity << ", message = " << message;
-    if (type == GL_DEBUG_TYPE_ERROR)
+    if (type == GL_DEBUG_TYPE_ERROR){
       DI_LOG_ERROR(ss.str());
-    else
+    }
+    else{
       DI_LOG_INFO(ss.str());
+    }
 
 }
 void GLClearError(){

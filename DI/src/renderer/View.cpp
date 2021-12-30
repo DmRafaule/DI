@@ -1,7 +1,9 @@
 #include "View.hpp"
 #include "Core.hpp"
+#include "Gui.hpp"
 
 namespace DI{
+extern Scope<DI::GUIData> _guiData;
 
 void ViewHandler::SetDefault(View &view, glm::vec2 &size){
    view.pos     = glm::vec3(0.0f,0.0f,5.0f);
@@ -58,6 +60,8 @@ void ViewHandler::SetCustom(View &view, const glm::vec3 pos, const glm::vec3 foc
 
 void ViewHandler::Use(View &view){
    view.eye = glm::lookAt(view.pos,view.pos + view.front,view.up);
+   view.ratio = _guiData->mainViewport_size.x / _guiData->mainViewport_size.y; 
+   view.proj = glm::perspective(glm::radians(view.fovy),view.ratio,0.1f,10000.0f);
 }
 void ViewHandler::SetPos(View &view, glm::vec3 pos){
    view.pos = pos;

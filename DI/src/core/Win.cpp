@@ -1,16 +1,10 @@
 #include "Win.hpp"
 
-
-#include "imgui.h"
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl3.h"
-
 namespace DI{
-    Scope<DI::WinData> _winData;
+   Scope<DI::WinData> _winData;
    void WinHandler::WinInit(WinData& data){
-      DI_LOG_TRACE("Init Win");
+      DI_LOG_TRACE("WinHandler say: Init Win.");
       data.bg = glm::vec3(41.f/255.f,46.f/255.f,54.f/255.f);
-      data.isImGUI = false;
       data.isMinimized = false;
       data.isOpen  = true;
       data.pos     = glm::vec2(300,300);
@@ -37,29 +31,10 @@ namespace DI{
       glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
    }
    void WinHandler::WinKill(WinData& data){
-      DI_LOG_TRACE("Kill Win");
+      DI_LOG_TRACE("WinHandler say: Kill Win.");
       SDL_GL_DeleteContext(data.context);
       SDL_DestroyWindow(data.win);
       SDL_Quit();
-   }
-
-   void WinHandler::ImGUIInit(WinData& data){
-      data.isImGUI = true;
-      DI_LOG_TRACE("Init ImGUI");
-      IMGUI_CHECKVERSION();
-      ImGui::CreateContext();
-      ImGuiIO& io = ImGui::GetIO();
-      ImGui::StyleColorsDark();
-
-      // Setup Platform/Renderer backends
-      ImGui_ImplSDL2_InitForOpenGL(data.win, (void*)data.context);
-      ImGui_ImplOpenGL3_Init("#version 130");
-   }
-   void WinHandler::ImGUIKill(WinData& data){
-      DI_LOG_TRACE("Kill ImGUI");
-      ImGui_ImplOpenGL3_Shutdown();
-      ImGui_ImplSDL2_Shutdown();
-      ImGui::DestroyContext();
    }
    
 } // namespace DI

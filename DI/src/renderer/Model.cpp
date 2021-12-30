@@ -14,10 +14,12 @@ namespace DI{
    		
    		const aiScene *scene = importer.ReadFile(path,aiProcess_Triangulate | aiProcess_FlipUVs);
 
-   		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+   		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode){
       		DI_LOG_ERROR("ModelHandler say: {0}",importer.GetErrorString());
-      	else
+			}
+      	else{
       		DI_LOG_INFO("ModelHandler say: Loaded model, success.");
+			}
       	
     	processNode(model, scene->mRootNode, scene);
     }

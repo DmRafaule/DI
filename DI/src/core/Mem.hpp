@@ -10,5 +10,5 @@ template<typename T> using Scope = std::unique_ptr<T>;
 #define GET_GLOBAL_DATA  namespace DI{\
     extern Scope<DI::AppData> _appData;\
     extern Scope<DI::WinData> _winData;\
-    extern Scope<DI::ImGUIData> _imguiData;\
+    extern Scope<DI::GUIData> _guiData;\
 }

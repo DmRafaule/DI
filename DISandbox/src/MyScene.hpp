@@ -12,5 +12,7 @@ public:
    void MouseMoved(glm::vec2 pos);
 private:
    bool isMouseActive = true;
-   Ref<DI::View>       view1;
+   Scope<DI::View>       view1;
+   Scope<DI::Model>      simpleSphere;
+   Scope<DI::Shader>     shader;
 };
