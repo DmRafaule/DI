@@ -30,6 +30,7 @@ enum UniformType : unsigned int{
 };
 // Shader data contain id  of program and their uniforms
 struct Shader{
+   bool isDebugCount;
    unsigned int id;
    std::unordered_map<std::string,UniformType> uniforms;
 };
@@ -39,7 +40,7 @@ public:
    // Set Shader data (Create shader program)
    static void Set(Shader &shader, const std::string& vertex_path, const std::string& fragment_path);
    // Use Shader 
-   static void Use(const Shader &shader);
+   static void Use(Shader &shader);
    // Get sources of specified file
    static std::string Parse(const std::string& name);
    // Get string type 

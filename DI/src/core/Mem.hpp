@@ -11,4 +11,5 @@ template<typename T> using Scope = std::unique_ptr<T>;
     extern Scope<DI::AppData> _appData;\
     extern Scope<DI::WinData> _winData;\
     extern Scope<DI::GUIData> _guiData;\
+    extern Scope<DI::DebugData> _debugData;\
 }

@@ -1,6 +1,6 @@
 TODO list
 
-
+Make engine executable
 Add ETT to engine
 Add physics to engine
 Add scripting to engine
@@ -14,9 +14,9 @@ Create GUI for engine(With ImGUI){
    * file explorer +
    * configurables{
       * layout(right handled, left handled, top minimal, bottom minimal)
-      * fone (type and size)
-      * fullscreen
-      * hide all docs
+      * font (type and size)+
+      * fullscreen +
+      * hide all docs +
    }
    * scene exporter/importer
    * counter for OpenGL calls and verticies

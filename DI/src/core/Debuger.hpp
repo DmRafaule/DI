@@ -1,6 +1,24 @@
 #pragma once
 
+namespace DI{
 
+struct DebugData{
+   int            counterDICalls = 0;      // openGL calls
+   int            counterDIVerticies_inUse = 0;  // verticies in viewport
+   int            counterDIElements_inUse = 0;   // indicies
+   int            counterDIMeshes_inUse = 0;     // rendered meshes
+   int            counterDIModels_inUse = 0;     // rendered models
+   int            counterDITextures_inUse = 0;   // rendered textures
+   int            counterDIShaders_inUse = 0;    // compiled shaders   
+   int            counterDIVerticies_inMem = 0;  // verticies in viewport
+   int            counterDIElements_inMem = 0;   // indicies
+   int            counterDIMeshes_inMem = 0;     // rendered meshes
+   int            counterDIModels_inMem = 0;     // rendered models
+   int            counterDITextures_inMem = 0;   // rendered textures
+   int            counterDIShaders_inMem = 0;    // compiled shaders   
+};
+
+}
 
 
 // Error handling

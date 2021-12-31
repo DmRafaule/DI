@@ -5,20 +5,22 @@ namespace DI{
    Scope<DI::AppData> _appData;
    extern Scope<DI::WinData> _winData;
    extern Scope<DI::GUIData> _guiData;
+   extern Scope<DI::DebugData> _debugData;
    
    App::App(){
       Log::Init();
       DI_LOG_TRACE("Init App");
+      _debugData = C_Scope<DebugData>();
       _winData = C_Scope<WinData>();
       _appData = C_Scope<AppData>();
       _guiData = C_Scope<GUIData>();
-      WinHandler::WinInit(*_winData);
-      GUIHandler::GUIInit(*_guiData);
+      WinHandler::Init(*_winData);
+      GUIHandler::Init(*_guiData);
    }
    App::~App(){
       SceneHandler::Clear();
-      GUIHandler::GUIKill(*_guiData);
-      WinHandler::WinKill(*_winData);
+      GUIHandler::Kill(*_guiData);
+      WinHandler::Kill(*_winData);
       DI_LOG_TRACE("Kill App");
    }
    void App::run(){
@@ -36,7 +38,7 @@ namespace DI{
                switch (Event.window.event){
                case SDL_WINDOWEVENT_RESIZED:{
                   _winData->size = glm::vec2(Event.window.data1,Event.window.data2);
-                  GUIHandler::UpdateViewport(*_guiData);
+                  GUIHandler::ViewportUpdate(*_guiData);
                   EventsHandler::WinResized(_winData->size);
                   break;
                }

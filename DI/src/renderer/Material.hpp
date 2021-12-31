@@ -20,9 +20,9 @@ namespace DI{
       // Set sampler data
       static void SetSampler(Material& material, const Texture& sampler);
       // Set uniform data
-      static void SetShader(Material& material, const Shader& shader);
+      static void SetShader(Material& material, Shader& shader);
       // Get access to material
-      static void UseMaterial(Material& material, const Shader& shader);
+      static void UseMaterial(Material& material, Shader& shader);
    };
 
 } // namespace DI

@@ -7,9 +7,11 @@
 
 namespace DI{
    
+	extern Scope<DI::DebugData> _debugData;
+
 	void ModelHandler::Load(Model& model,std::string path){
    		Assimp::Importer importer;
-
+			
    		model.path = processPath(path);
    		
    		const aiScene *scene = importer.ReadFile(path,aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -18,10 +20,11 @@ namespace DI{
       		DI_LOG_ERROR("ModelHandler say: {0}",importer.GetErrorString());
 			}
       	else{
+				_debugData->counterDIModels_inMem++;
       		DI_LOG_INFO("ModelHandler say: Loaded model, success.");
+    			processNode(model, scene->mRootNode, scene);
 			}
       	
-    	processNode(model, scene->mRootNode, scene);
     }
     void ModelHandler::Scale(Model &model, const glm::vec3 offset){
     	for (int i = 0; i < model.meshes.size(); ++i){
@@ -57,12 +60,13 @@ namespace DI{
     }
     Ref<Mesh> ModelHandler::processMesh(Model& model, aiMesh *mesh, const aiScene *scene){
 		Ref<Mesh> m(new Mesh());
-
+			// 								3     3      3         2
 	   	//process vertecies data(pos, colors, normals, texcoord)
-	   	m->verticies.count = mesh->mNumVertices * 8;
-	   	m->verticies.data = new float[m->verticies.count];
+	   	m->verticies.count = mesh->mNumVertices; 
+			m->verticies.size = m->verticies.count * 11;// I dont like this 11 (how many floats in one vertices)
+	   	m->verticies.data = new float[m->verticies.size];
 	   	int counter = 0;
-	   	for(unsigned int i = 0; i < mesh->mNumVertices; i++){
+	   	for(unsigned int i = 0; i < m->verticies.count; i++){
 	   		static_cast<float*>(m->verticies.data)[counter]   = mesh->mVertices[i].x;
 	      	static_cast<float*>(m->verticies.data)[counter+1] = mesh->mVertices[i].y;
 	      	static_cast<float*>(m->verticies.data)[counter+2] = mesh->mVertices[i].z;

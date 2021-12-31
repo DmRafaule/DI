@@ -1,9 +1,12 @@
 #include "Shader.hpp"
 
 namespace DI{
-   
+
+extern Scope<DI::DebugData> _debugData;
+
 void ShaderHandler::Set(Shader& shader, const std::string& vertex_name, const std::string& fragment_name){
    // Get source of shader files
+   shader.isDebugCount = false;
    std::string vertex_src = ShaderHandler::Parse(vertex_name);
    std::string fragment_src = ShaderHandler::Parse(fragment_name);
    // Set uniforms
@@ -18,12 +21,16 @@ void ShaderHandler::Set(Shader& shader, const std::string& vertex_name, const st
    glAttachShader(shader.id,fs);
    glLinkProgram(shader.id);
    glValidateProgram(shader.id);
-
+   _debugData->counterDIShaders_inMem++;
    glDeleteShader(vs);
    glDeleteShader(fs);
 }
 
-void ShaderHandler::Use(const Shader& shader){
+void ShaderHandler::Use(Shader& shader){
+   if (!shader.isDebugCount){
+      _debugData->counterDIShaders_inUse++;
+      shader.isDebugCount = true;
+   }
    glUseProgram(shader.id);
 }
 std::string ShaderHandler::Parse(const std::string& name){

@@ -3,6 +3,8 @@
 
 namespace DI{
 
+extern Scope<DebugData> _debugData;
+
 Scene::Scene(){
    DI_LOG_TRACE("SceneHandler say: init scene");
 }
@@ -32,6 +34,12 @@ void SceneHandler::Clear(){
    scenes.clear();
 }
 void SceneHandler::Update(){
+   _debugData->counterDICalls = 0;
+   _debugData->counterDIElements_inUse = 0;
+   _debugData->counterDIVerticies_inUse = 0;
+   _debugData->counterDIMeshes_inUse = 0;
+   _debugData->counterDIModels_inUse = 0;
+   _debugData->counterDITextures_inUse = 0;
    if (currentScene != nullptr)
       LayerHandler::Update(currentScene->layers);
 }

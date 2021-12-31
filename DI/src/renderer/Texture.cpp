@@ -5,6 +5,8 @@
 
 namespace DI{
 
+extern Scope<DI::DebugData> _debugData;
+
 void TextureHandler::Set(Texture &texture, std::string path){
     // Create texture obj
     texture.path = path;
@@ -33,6 +35,7 @@ void TextureHandler::Set(Texture &texture, std::string path){
         glTexImage2D(GL_TEXTURE_2D,0,texture.mode,texture.width,texture.height,0,texture.mode,GL_UNSIGNED_BYTE,texture.data);
         glGenerateMipmap(GL_TEXTURE_2D);
         stbi_image_free(texture.data);
+        _debugData->counterDITextures_inMem++;
     }
     else{
         DI_LOG_ERROR("STB CALLBACK: fail to load image. Path:{0}",texture.path);
@@ -46,6 +49,7 @@ void TextureHandler::SetFilters(Texture &texture,unsigned int wrap_s, unsigned i
 }
 void TextureHandler::Use(Texture &texture,const Shader& shad){
     // Bind texture to polygon
+    _debugData->counterDITextures_inUse++;
     ShaderHandler::SetUniform(shad, texture.sampler.c_str(), (int)texture.slot);
     glActiveTexture(GL_TEXTURE0 + texture.slot);
     glBindTexture(GL_TEXTURE_2D,texture.id);

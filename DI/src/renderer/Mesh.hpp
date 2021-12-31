@@ -7,6 +7,7 @@ namespace DI {
    struct Vertice{
       void         *data;
       unsigned int  count;
+      unsigned int  size;// How long data in one vertice
    };
    // Contain element data(Indices)
    struct Element{

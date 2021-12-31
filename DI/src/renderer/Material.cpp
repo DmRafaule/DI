@@ -8,8 +8,8 @@
 */
 
 namespace DI{
-   
-   void MaterialHandler::UseMaterial(Material& material, const Shader& shader){
+
+   void MaterialHandler::UseMaterial(Material& material, Shader& shader){
       DI::ShaderHandler::Use(shader);
       for (int i = 0; i < material.samplers.size(); ++i){
          DI::TextureHandler::Use(material.samplers[i].second,shader);
@@ -106,7 +106,7 @@ namespace DI{
    void MaterialHandler::SetSampler(Material& material, const Texture& sampler){
       material.samplers.push_back(std::pair<std::string,Texture>(sampler.sampler,sampler));
    }
-   void MaterialHandler::SetShader(Material& material, const Shader& shader){
+   void MaterialHandler::SetShader(Material& material, Shader& shader){
       for (auto& uni : shader.uniforms){
          switch(uni.second){
             case UniformType::FL:{

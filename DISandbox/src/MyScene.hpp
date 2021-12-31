@@ -15,4 +15,7 @@ private:
    Scope<DI::View>       view1;
    Scope<DI::Model>      simpleSphere;
    Scope<DI::Shader>     shader;
+   Scope<DI::Model>      cubes;
+   Scope<DI::Shader>     shader1;
+   Scope<DI::Shader>     shader2;
 };

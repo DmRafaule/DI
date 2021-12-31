@@ -6,14 +6,16 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_internal.h"
+#include <SDL.h>
 
 namespace DI{
 
 Scope<DI::GUIData> _guiData;
 extern Scope<DI::WinData> _winData;
 extern Scope<DI::AppData> _appData;
+extern Scope<DI::DebugData> _debugData;
 
-void GUIHandler::GUIInit(GUIData& data){
+void GUIHandler::Init(GUIData& data){
     
     DI_LOG_TRACE("GUIHandler say: Init GUI.");
     IMGUI_CHECKVERSION();
@@ -21,7 +23,14 @@ void GUIHandler::GUIInit(GUIData& data){
     data.mainViewport_pos = glm::vec2(0.0f,0.0f);
     data.mainViewport_size = glm::vec2(100.0f,100.0f);
     data._resize_now = ImGuiWindowFlags_None;
+    data._mainDoc_pos = 0;
     data._mainDoc_min = 300;
+    data._airline_min = 30;
+    data._header_min  = 30;
+    data.layouts.push_back("left handled");
+    data.layouts.push_back("right handled(in dev)");
+    data.layouts.push_back("top minimal(in dev)");
+    data.layouts.push_back("bottom minimal(in dev)");
     data.flags_minimal = C_Scope<ImGuiWindowFlags>();
     data.flags_moveable = C_Scope<ImGuiWindowFlags>();
     data.flags_tab_to_win = C_Scope<ImGuiWindowFlags>();
@@ -33,9 +42,9 @@ void GUIHandler::GUIInit(GUIData& data){
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/Quicksand-VariableFont_wght.ttf",16);
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/BebasNeue-Regular.ttf",20);
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/Inconsolata-VariableFont.ttf",20);
-    data.io->Fonts->AddFontFromFileTTF( "res/fonts/IndieFlower-Regular.ttf",20);
+    data.io->Fonts->AddFontFromFileTTF( "res/fonts/IndieFlower-Regular.ttf",24);
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/Orbitron-VariableFont_wght.ttf",20);
-    data.io->Fonts->AddFontFromFileTTF( "res/fonts/PressStart2P-Regular.ttf",20);
+    data.io->Fonts->AddFontFromFileTTF( "res/fonts/PressStart2P-Regular.ttf",15);
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/Righteous-Regular.ttf",20);
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/Rock3D-Regular.ttf",20);
     data.io->Fonts->AddFontFromFileTTF( "res/fonts/Shizuru-Regular.ttf",20);
@@ -47,7 +56,7 @@ void GUIHandler::GUIInit(GUIData& data){
     ImGui_ImplSDL2_InitForOpenGL(_winData->win, (void*)_winData->context);
     ImGui_ImplOpenGL3_Init("#version 130");
 }
-void GUIHandler::GUIKill(GUIData& data){
+void GUIHandler::Kill(GUIData& data){
 	DI_LOG_TRACE("GUIHandler say: Kill GUI.");
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -58,9 +67,9 @@ void GUIHandler::Update(){
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
      
-    updateAirline();
     updateHeader();
     updateMainDoc();
+    updateAirline();
     updateMainViewport();
     // Rendering
     ImGui::Render();
@@ -69,7 +78,7 @@ void GUIHandler::Update(){
 void GUIHandler::EventsUpdate(GUIData& data, SDL_Event& event){
     ImGui_ImplSDL2_ProcessEvent(&event);
 }
-void GUIHandler::UpdateViewport(GUIData& data){
+void GUIHandler::ViewportUpdate(GUIData& data){
     data.mainViewport_pos.x = data.MainDocSize.x;
     data.mainViewport_pos.y = data.MainDocPos.y;
     data.mainViewport_size.x = _winData->size.x - data.MainDocSize.x;
@@ -77,19 +86,19 @@ void GUIHandler::UpdateViewport(GUIData& data){
     glViewport(data.mainViewport_pos.x,data.mainViewport_pos.y, data.mainViewport_size.x, data.mainViewport_size.y);
 }
 void GUIHandler::updateAirline(){
-    _guiData->AirlineSize = glm::vec2(_winData->size.x,30);
-    _guiData->AirlinePos = glm::vec2(0,_winData->size.y - 30);
+    _guiData->AirlineSize = glm::vec2(_winData->size.x,_guiData->_airline_min);
+    _guiData->AirlinePos = glm::vec2(0,_winData->size.y - _guiData->_airline_min);
     ImGui::SetNextWindowSize( ImVec2(_guiData->AirlineSize.x,_guiData->AirlineSize.y ) );
     ImGui::SetNextWindowPos( ImVec2(_guiData->AirlinePos.x,_guiData->AirlinePos.y));
-    ImGui::Begin("Airline", NULL ,*_guiData->flags_minimal);
+    ImGui::Begin("Airline", nullptr ,*_guiData->flags_minimal | _guiData->_resize_now);
     ImGui::End();
 }
 void GUIHandler::updateHeader(){
-    _guiData->HeaderSize = glm::vec2(_winData->size.x, 30 );
+    _guiData->HeaderSize = glm::vec2(_winData->size.x, _guiData->_header_min );
     _guiData->HeaderPos = glm::vec2(0,0);
     ImGui::SetNextWindowSize( ImVec2(_guiData->HeaderSize.x,_guiData->HeaderSize.y ) );
     ImGui::SetNextWindowPos( ImVec2(_guiData->HeaderPos.x,_guiData->HeaderPos.y));
-    ImGui::Begin("Header", NULL ,*_guiData->flags_minimal);
+    ImGui::Begin("Header", NULL ,*_guiData->flags_minimal | _guiData->_resize_now);
     // Session
     if (ImGui::Button("Session"))
         ImGui::OpenPopup("session_popup");
@@ -112,11 +121,37 @@ void GUIHandler::updateHeader(){
         ImGui::OpenPopup("settings_popup");
     ImGui::SameLine();
     if (ImGui::BeginPopup("settings_popup")){
-        if (ImGui::Selectable("window")){
-
-        }
-        if (ImGui::Selectable("layout")){
-
+        if (ImGui::BeginMenu("window")){
+                if (ImGui::Selectable("fullscreen")) {
+                    if (!_guiData->isFullscreen){
+                        _guiData->isFullscreen = true;
+                        SDL_DisplayMode dm;
+                        SDL_GetDesktopDisplayMode(0,&dm);
+                        glViewport(0,0,dm.w,dm.h);
+                        SDL_SetWindowFullscreen(_winData->win,SDL_WINDOW_FULLSCREEN_DESKTOP);
+                    }
+                    else {
+                        _guiData->isFullscreen = false;
+                        SDL_SetWindowFullscreen(_winData->win,0);
+                    }
+                }
+                if (ImGui::Selectable("hide all docs")) {
+                    _guiData->isHideAllDocs = true;
+                    _guiData->_mainDoc_pos = -30;
+                    _guiData->_mainDoc_min = 1;
+                    _guiData->_airline_min = 1;
+                    _guiData->_header_min  = 1;
+                    _guiData->_resize_now = ImGuiWindowFlags_AlwaysAutoResize;
+                }
+                ImGui::EndMenu();
+            }
+        if (ImGui::BeginCombo("layout",_guiData->current_layout.c_str())){
+            for (int n = 0; n < _guiData->layouts.size(); n++){
+                if (ImGui::Selectable(_guiData->layouts[n].c_str())){
+                    _guiData->current_layout = _guiData->layouts[n];
+                }
+            }
+            ImGui::EndCombo();
         }
         ImFont* font_current = ImGui::GetFont();
         if (ImGui::BeginCombo("font",font_current->GetDebugName())){
@@ -206,17 +241,17 @@ void GUIHandler::updateHeader(){
     ImGui::End();
 }
 void GUIHandler::updateMainDoc(){
-    _guiData->MainDocPos = glm::vec2(0,30);
+    _guiData->MainDocPos = glm::vec2(_guiData->_mainDoc_pos,_guiData->_airline_min);
     int index_dranddr = 0;
     ImGui::SetNextWindowPos( ImVec2(_guiData->MainDocPos.x,_guiData->MainDocPos.y));
     ImGui::SetNextWindowViewport(ImGui::GetMainViewport()->ID);
-    ImGui::SetNextWindowSizeConstraints(ImVec2( _guiData->_mainDoc_min, _winData->size.y - 30*2),    ImVec2(_winData->size.x/2, _winData->size.y - 30*2)); 
-    ImGui::Begin("MainDoc", NULL ,*_guiData->flags_minimal ^ ImGuiWindowFlags_NoResize ^ ImGuiWindowFlags_NoDocking | _guiData->_resize_now );//disable (to 0) resize flag from data.flags_minimar
-    _guiData->MainDocSize = glm::vec2( ImGui::GetWindowSize().x, ImGui::GetWindowSize().y );
+    ImGui::SetNextWindowSizeConstraints(ImVec2( _guiData->_mainDoc_min, _winData->size.y - _guiData->_airline_min*2),    ImVec2(_winData->size.x/2, _winData->size.y - _guiData->_airline_min*2)); 
+    ImGui::Begin("MainDoc", nullptr ,*_guiData->flags_minimal ^ ImGuiWindowFlags_NoResize ^ ImGuiWindowFlags_NoDocking | _guiData->_resize_now );//disable (to 0) resize flag from data.flags_minimar
+    _guiData->MainDocSize = glm::vec2( ImGui::GetWindowSize().x - _guiData->_mainDoc_pos * (-1), ImGui::GetWindowSize().y );
     ImGuiID dockspace_id = ImGui::GetID("MainDoc");
     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
     ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_Reorderable ;
-    if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags)){
+    if (!_guiData->isHideAllDocs && ImGui::BeginTabBar("MyTabBar", tab_bar_flags)){
         if (!_guiData->tab_to_win_status.isFileMan && ImGui::BeginTabItem("FileSystem")){
             _guiData->_resize_now = ImGuiWindowFlags_None;
             _guiData->_mainDoc_min = 300;
@@ -263,13 +298,14 @@ void GUIHandler::updateMainDoc(){
         }
         ImGui::EndTabBar();
     }
-    if (_guiData->tab_to_win_status.isFileMan && 
+    if ((_guiData->tab_to_win_status.isFileMan && 
         _guiData->tab_to_win_status.isEntityMan && 
         _guiData->tab_to_win_status.isConsoleMan &&
-        _guiData->tab_to_win_status.isScriptMan){
+        _guiData->tab_to_win_status.isScriptMan) && !_guiData->isHideAllDocs){
         _guiData->_mainDoc_min = 10;
         _guiData->_resize_now = ImGuiWindowFlags_AlwaysAutoResize;
     }
+
     ImGui::DockBuilderRemoveNode(dockspace_id); // Clear out existing layout
     ImGui::DockBuilderAddNode(dockspace_id,ImGuiWindowFlags_None ); // Add empty node
 
@@ -286,10 +322,11 @@ void GUIHandler::updateMainDoc(){
 }
 void GUIHandler::updateMainViewport(){
 
-    UpdateViewport(*_guiData);
+    ViewportUpdate(*_guiData);
     ImGui::SetNextWindowSize( ImVec2(_guiData->mainViewport_size.x,_guiData->mainViewport_size.y ) );
     ImGui::SetNextWindowPos( ImVec2(_guiData->mainViewport_pos.x,_guiData->mainViewport_pos.y));
     ImGui::Begin("viewport",NULL,*_guiData->flags_moveable | ImGuiWindowFlags_NoBackground);
+    // Where to drop drag and drops stuff
     ImGui::Image(0,ImGui::GetWindowSize(),ImVec2(0, 0),ImVec2(1, 1),ImVec4(0, 0, 0, 0));
     if (ImGui::BeginDragDropTarget()){
         if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MODEL_ON")){
@@ -321,6 +358,18 @@ void GUIHandler::updateMainViewport(){
             _guiData->tab_to_win_status.isScriptMan = true;
         }
         ImGui::EndDragDropTarget();
+    }
+    // Create button for undo hiding all docs
+    if (_guiData->isHideAllDocs){
+        ImGui::SetCursorPos(ImVec2(0,ImGui::GetWindowSize().y - 30 ));
+        if (ImGui::Button("show docs")){
+            _guiData->isHideAllDocs = false;
+            _guiData->_mainDoc_pos = 0;
+            _guiData->_mainDoc_min = 300;
+            _guiData->_airline_min = 30;
+            _guiData->_header_min  = 30;
+            _guiData->_resize_now = ImGuiWindowFlags_None;
+        }
     }
     ImGui::End();
 
@@ -430,11 +479,33 @@ void GUIHandler::updateConsole(){
     ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_Reorderable ;
     if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags)){
         if (ImGui::BeginTabItem("Debug")){
+            ImGui::Separator();
+            ImGui::Separator();
+            ImGui::Text("DI");
+            ImGui::Separator();
             ImGui::Text("%d vertices, %d indices ", _guiData->io->MetricsRenderVertices, _guiData->io->MetricsRenderIndices);
             ImGui::Text("Active windows %d", _guiData->io->MetricsRenderWindows, _guiData->io->MetricsActiveAllocations);
             ImGui::Text("Active allocations %d", _guiData->io->MetricsActiveAllocations);
-            ImGui::Text("OpenGL calls: %g",1);
+            ImGui::Separator();
+            ImGui::Separator();
+            ImGui::Text("App");
+            ImGui::Separator();
+            ImGui::Text("Common");
+            ImGui::Text("OpenGL calls: %d",_debugData->counterDICalls);
             ImGui::Text("FPS: %g",1 / CoreTime::tic);
+            ImGui::Text("In use");
+            ImGui::Text("Scene verticies: %d\t Scene elements(indecies): %d",_debugData->counterDIVerticies_inUse,_debugData->counterDIElements_inUse);
+            ImGui::Text("Scene meshes: %d",_debugData->counterDIMeshes_inUse);
+            ImGui::Text("Scene models: %d",_debugData->counterDIModels_inUse);
+            ImGui::Text("Scene textures: %d",_debugData->counterDITextures_inUse);
+            ImGui::Text("Scene shaders: %d",_debugData->counterDIShaders_inUse);
+            ImGui::Separator();
+            ImGui::Text("In mem(all)");
+            ImGui::Text("Scene verticies: %d\t Scene elements(indecies): %d",_debugData->counterDIVerticies_inMem,_debugData->counterDIElements_inMem);
+            ImGui::Text("Scene meshes: %d",_debugData->counterDIMeshes_inMem);
+            ImGui::Text("Scene models: %d",_debugData->counterDIModels_inMem);
+            ImGui::Text("Scene textures: %d",_debugData->counterDITextures_inMem);
+            ImGui::Text("Scene shaders: %d",_debugData->counterDIShaders_inMem);
             ImGui::EndTabItem();
         }
         if (ImGui::BeginTabItem("Logs")){

@@ -2,7 +2,7 @@
 
 namespace DI{
    Scope<DI::WinData> _winData;
-   void WinHandler::WinInit(WinData& data){
+   void WinHandler::Init(WinData& data){
       DI_LOG_TRACE("WinHandler say: Init Win.");
       data.bg = glm::vec3(41.f/255.f,46.f/255.f,54.f/255.f);
       data.isMinimized = false;
@@ -30,7 +30,7 @@ namespace DI{
       // Init drawing mode
       glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
    }
-   void WinHandler::WinKill(WinData& data){
+   void WinHandler::Kill(WinData& data){
       DI_LOG_TRACE("WinHandler say: Kill Win.");
       SDL_GL_DeleteContext(data.context);
       SDL_DestroyWindow(data.win);

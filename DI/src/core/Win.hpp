@@ -16,12 +16,13 @@ namespace DI{
       SDL_GLContext  context;
       bool           isOpen;
       bool           isMinimized;
+
    };
 
    class WinHandler{
    public:
-      static void WinInit(WinData& data);
-      static void WinKill(WinData& data);;
+      static void Init(WinData& data);
+      static void Kill(WinData& data);;
    private:
    };
 

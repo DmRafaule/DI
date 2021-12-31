@@ -21,6 +21,7 @@ namespace DI{
 		bool isConsoleMan = false;
 		bool isEntityMan = false;
 	};
+	
 	// Contain all data about UI
 	struct GUIData{
 		ImGuiIO *io;
@@ -37,17 +38,26 @@ namespace DI{
 		Scope<ImGuiWindowFlags> flags_tab_to_win;
 		ImGuiWindowFlags _resize_now;
 		int _mainDoc_min;
+		int _mainDoc_pos;
+		int _airline_min;
+		int _header_min;
 		std::string current_folder = ".";
+		std::string current_layout = "leftHandled";
+		std::vector<std::string> layouts;
 		DragableRes current_dragable_res;
 		DragableTab tab_to_win_status;
+		bool isFullscreen;
+		bool isHideAllDocs;
+		bool isAirlineOpen = true;
+		bool isMainDocOpen = true;
 	};
 	// Transform and manipulate data
 	class  GUIHandler{
 	public:
 
-		static void GUIInit(GUIData& data);
-		static void GUIKill(GUIData& data);
-		static void UpdateViewport(GUIData& data);
+		static void Init(GUIData& data);
+		static void Kill(GUIData& data);
+		static void ViewportUpdate(GUIData& data);
 		static void EventsUpdate(GUIData& data, SDL_Event& event);
 		static void Update();
 	private:

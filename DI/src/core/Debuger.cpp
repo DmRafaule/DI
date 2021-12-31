@@ -2,6 +2,12 @@
 #include "SDL.h"
 
 
+namespace DI{
+
+Scope<DI::DebugData> _debugData;
+
+}
+
 // Error handling
 void ErrorCallback( unsigned int source, unsigned int type, unsigned int id, unsigned int severity, int length, const char* message, const void* userParam ){
     std::stringstream ss;
