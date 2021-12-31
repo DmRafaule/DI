@@ -65,7 +65,9 @@ endif(UNIX)
 add_executable(${DIEditor} ${SOURCES} ${SOURCES_EDITOR})
 target_link_libraries(${DIEditor} ${PROJECT_NAME} ${CMAKE_DL_LIBS})
 
-file (INSTALL ${CMAKE_SOURCE_DIR}/lib/${DIEditor} DESTINATION ${CMAKE_SOURCE_DIR}/bin)# make check if file exist
+if (EXISTS ${CMAKE_SOURCE_DIR}/lib/${DIEditor})
+   file (INSTALL ${CMAKE_SOURCE_DIR}/lib/${DIEditor} DESTINATION ${CMAKE_SOURCE_DIR}/bin)
+endif()
 file (INSTALL ${RES} DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 file (INSTALL ${DI_LIB} DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
