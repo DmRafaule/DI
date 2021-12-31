@@ -1,8 +1,11 @@
 # DI Game engine
 
 This is repo consist from next folders(not the actual layout in future)
-* DI (contain actual code for engine)
-* DISandbox (contain app which interact and use engine utilities)
+* bin  (here you can find executable for editor, library and copies of resources)
+* dep (here you can find libraries (not my) )
+* lib (here you can find libraries (my))
+* res (here you can find all assets(textures, sounds, models etc))
+* src (here you can find sources of all DIEditor and DI library)
 
 
 For now support only Linux systems

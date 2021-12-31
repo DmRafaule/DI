@@ -1,18 +1,18 @@
-[submodule "DI/dep/GLM"]
-	path = DI/dep/GLM
+[submodule "dep/GLM"]
+	path = dep/GLM
 	url = https://github.com/g-truc/glm.git
-[submodule "DI/dep/SPDLOG"]
-	path = DI/dep/SPDLOG
+[submodule "dep/SPDLOG"]
+	path = dep/SPDLOG
 	url = https://github.com/gabime/spdlog.git
-[submodule "DI/dep/GLEW"]
-	path = DI/dep/GLEW
+[submodule "dep/GLEW"]
+	path = dep/GLEW
 	url = https://github.com/Perlmint/glew-cmake.git
-[submodule "DI/dep/SDL2"]
-	path = DI/dep/SDL2
+[submodule "dep/SDL2"]
+	path = dep/SDL2
 	url = https://github.com/libsdl-org/SDL.git
-[submodule "DI/dep/IMGUI"]
-	path = DI/dep/IMGUI
+[submodule "dep/IMGUI"]
+	path = dep/IMGUI
 	url = https://github.com/ocornut/imgui.git
-[submodule "DI/dep/ASSIMP"]
-	path = DI/dep/ASSIMP
+[submodule "dep/ASSIMP"]
+	path = dep/ASSIMP
 	url = https://github.com/assimp/assimp.git
