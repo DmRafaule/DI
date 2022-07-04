@@ -3,34 +3,44 @@ cmake_minimum_required(VERSION 3.18)
 project(DI)
 
 
-
 file(GLOB SOURCES_LIBS 
-   "dep/include/core/*.cpp" 
-   "dep/include/renderer/*.cpp"
-   "dep/include/external/imgui/*.cpp" 
-   "dep/include/external/imgui/backends/*.cpp")
+   "dep/DI/core/*.cpp" 
+   "dep/DI/renderer/*.cpp"
+   "dep/IMGUI/imgui/*.cpp" 
+   "dep/IMGUI/imgui/backends/*.cpp")
 file(GLOB SOURCES_APP
    "src/*.cpp"
 )
 
 # Here maybe other directory
 if (WIN32)
-   file(GLOB LIBS "dep/lib/*.dll*")
+   file(GLOB LIBS 
+               "dep/ASSIMP/lib/*.dll*" 
+               "dep/GLEW/lib/*.dll*" 
+               "dep/SDL2/lib/*.dll*")
    file(GLOB DI "build/*.dll*")
 endif (WIN32)
 if (UNIX)
-   file(GLOB LIBS "dep/lib/*.so*")
+file(GLOB LIBS 
+               "dep/ASSIMP/lib/*.so*" 
+               "dep/GLEW/lib/*.so*" 
+               "dep/SDL2/lib/*.so*")
    file(GLOB DI "build/*.so*")
 endif(UNIX)
 
 set(GL -lGL -lglut )
 set(INCLUDE_DIRECTORIES 
-   dep/include 
-   dep/include/core
-   dep/include/external
-   dep/include/external/imgui
-   dep/include/external/imgui/backends
-   dep/include/renderer
+   dep/DI 
+   dep/DI/core
+   dep/DI/renderer
+   dep/ASSIMP/include
+   dep/GLEW/include
+   dep/GLM
+   dep/SDL2/include
+   dep/SPDLOG
+   dep/STB
+   dep/IMGUI/imgui
+   dep/IMGUI/imgui/backends
    )
 set(CMAKE_CXX_FLAGS -pthread )
 set(BUILD_SHARED_LIBS ON)

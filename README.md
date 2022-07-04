@@ -2,10 +2,14 @@
 
 ## Structure
 This is repo consist from next folders
-* dep/include/core **Consist from main files creating structure of the DI lib**
-* dep/include/external **Consist from sources and headers of exteranl projects such as assimp, sdl2, glew, glm, imgui, spdlog, stb**
-* dep/include/renderer **Consist fromm files which related to drawing on screen**
-* dep/lib **Hold all precompiled libraries**
+* dep/DI **My engine**
+* dep/ASSIMP **Procced 3d models**
+* dep/GLEW **For using GPU functions**
+* dep/GLM **For vector and matrices math**
+* dep/IMGUI **For easy to use and create UI**
+* dep/SDL2  **For window context, music, event handling**
+* dep/SPDLOG **For loging system**
+* dep/STB **For loading images to GPU**
 * res **Containing textures, sound, shaders, etc**
 * src **Containing sources for app part of project, your files**
 
