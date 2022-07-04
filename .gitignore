@@ -1,5 +1,2 @@
 build
-DI/lib
-DI/.vscode
-DISandbox/build
-DISandbox/.vscode
+.vscode

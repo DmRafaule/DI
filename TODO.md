@@ -1,6 +1,5 @@
 TODO list
 
-Make engine executable
 Add ETT to engine
 Add physics to engine
 Add scripting to engine

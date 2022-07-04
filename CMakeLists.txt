@@ -1,36 +1,49 @@
+
 cmake_minimum_required(VERSION 3.18)
-project(GameEngine)
+project(DI)
 
 
-add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SDL2 ${CMAKE_SOURCE_DIR}/DI/dep/SDL2/build )
-add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/GLEW ${CMAKE_SOURCE_DIR}/DI/dep/GLEW )
-add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG/build )
-add_subdirectory( ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP/build )
 
-# Create Engine libs
-add_subdirectory(${CMAKE_SOURCE_DIR}/DI ${CMAKE_SOURCE_DIR}/DI/lib)
-# Move needed files
-file(GLOB LIBS ${CMAKE_SOURCE_DIR}/DI/lib/lib*.[a,so,dll,lib]*) # Add all needed submodules in project
-file(
-   GLOB 
-      INCLUDE_EXTERNAL 
-         ${CMAKE_SOURCE_DIR}/DI/dep/GLEW/include/* 
-         ${CMAKE_SOURCE_DIR}/DI/dep/GLM/glm
-         ${CMAKE_SOURCE_DIR}/DI/dep/SDL2/include/*
-         ${CMAKE_SOURCE_DIR}/DI/dep/SPDLOG/include/*
-         ${CMAKE_SOURCE_DIR}/DI/dep/STB/include/*
-         ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP/include/assimp
-         ${CMAKE_SOURCE_DIR}/DI/dep/ASSIMP/build/include/assimp
-)
-file(
-   GLOB 
-      INCLUDE_INTERNAL 
-         ${CMAKE_SOURCE_DIR}/DI/src/** 
+file(GLOB SOURCES_LIBS 
+   "dep/include/core/*.cpp" 
+   "dep/include/renderer/*.cpp"
+   "dep/include/external/imgui/*.cpp" 
+   "dep/include/external/imgui/backends/*.cpp")
+file(GLOB SOURCES_APP
+   "src/*.cpp"
 )
 
-file(INSTALL ${LIBS} DESTINATION ${CMAKE_SOURCE_DIR}/DISandbox/dep/DI/lib)
-file(INSTALL ${INCLUDE_EXTERNAL} DESTINATION ${CMAKE_SOURCE_DIR}/DISandbox/dep/DI/include/external)
-file(INSTALL ${INCLUDE_INTERNAL} DESTINATION ${CMAKE_SOURCE_DIR}/DISandbox/dep/DI/include)
+# Here maybe other directory
+if (WIN32)
+   file(GLOB LIBS "dep/lib/*.dll*")
+   file(GLOB DI "build/*.dll*")
+endif (WIN32)
+if (UNIX)
+   file(GLOB LIBS "dep/lib/*.so*")
+   file(GLOB DI "build/*.so*")
+endif(UNIX)
 
-# Create actual app
-add_subdirectory(${CMAKE_SOURCE_DIR}/DISandbox ${CMAKE_SOURCE_DIR}/DISandbox/build)
+set(GL -lGL -lglut )
+set(INCLUDE_DIRECTORIES 
+   dep/include 
+   dep/include/core
+   dep/include/external
+   dep/include/external/imgui
+   dep/include/external/imgui/backends
+   dep/include/renderer
+   )
+set(CMAKE_CXX_FLAGS -pthread )
+set(BUILD_SHARED_LIBS ON)
+set(CMAKE_BUILD_TYPE Debug)
+
+#Move needed resources
+file(GLOB RES 
+   res
+)
+file (INSTALL ${RES} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/build)
+
+include_directories(${INCLUDE_DIRECTORIES})
+add_library(${PROJECT_NAME} ${SOURCES_LIBS})
+target_link_libraries(${PROJECT_NAME} ${LIBS} ${GL})
+add_executable(sandbox ${SOURCES_APP})
+target_link_libraries(sandbox ${DI})

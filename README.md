@@ -1,9 +1,13 @@
 # DI Game engine
 
 ## Structure
-This is repo consist from next folders(not the actual layout in future)
-* DI (contain actual code for engine)
-* DISandbox (contain app which interact and use engine utilities)
+This is repo consist from next folders
+* dep/include/core **Consist from main files creating structure of the DI lib**
+* dep/include/external **Consist from sources and headers of exteranl projects such as assimp, sdl2, glew, glm, imgui, spdlog, stb**
+* dep/include/renderer **Consist fromm files which related to drawing on screen**
+* dep/lib **Hold all precompiled libraries**
+* res **Containing textures, sound, shaders, etc**
+* src **Containing sources for app part of project, your files**
 
 ## Features(kind of)
 For now support only Linux systems
@@ -33,10 +37,9 @@ Screenshots:
 
 ### Actual buildings
 1. Download this repo
-2. ``` git submodule update --init ```
-3. ``` cmake -S . -B build ```
-4. ``` cd build ```
-5. ``` make -j4 ```
+2. ``` cmake -S . -B build ```
+3. ``` cd build ```
+4. ``` make -j4 ```
 
-Now executabel appears in to DISandbox/build forlder. Go to there and run 
+Now executabel appears in build forlder. Go to there and run 
 ``` ./sandbox ```
